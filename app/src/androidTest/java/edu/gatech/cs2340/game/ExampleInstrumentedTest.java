@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.m5;
+package edu.gatech.cs2340.game;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

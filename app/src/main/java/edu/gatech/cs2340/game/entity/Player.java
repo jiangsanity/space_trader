@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.m5.entity;
+package edu.gatech.cs2340.game.entity;
 
 public class Player {
     private String name;
