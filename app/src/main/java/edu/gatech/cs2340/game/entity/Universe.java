@@ -2,6 +2,7 @@ package edu.gatech.cs2340.game.entity;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 //treat as singleton
 public class Universe {
@@ -23,6 +24,12 @@ public class Universe {
         } else {
             systems.put(newSystem.getName(), newSystem);
             return true;
+        }
+    }
+
+    public static void addSolarSystem(List<SolarSystem> newSystemList) {
+        for(SolarSystem system : newSystemList) {
+            addSolarSystem(system);
         }
     }
 }
