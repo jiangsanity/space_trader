@@ -1,9 +1,7 @@
-package edu.gatech.cs2340.m5.views;
+package edu.gatech.cs2340.game.views;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,10 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import edu.gatech.cs2340.m5.R;
-import edu.gatech.cs2340.m5.entity.Player;
+import edu.gatech.cs2340.game.R;
+import edu.gatech.cs2340.game.entity.Player;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.m5;
+package edu.gatech.cs2340.game;
 
 import org.junit.Test;
 
