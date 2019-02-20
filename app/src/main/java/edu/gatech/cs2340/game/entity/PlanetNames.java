@@ -1,6 +1,5 @@
 package edu.gatech.cs2340.game.entity;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -128,9 +127,9 @@ public enum PlanetNames {
     ZUUL("Zuul");			// From the first Ghostbusters movie
 
     private String name;
-    private PlanetNames[] allNames = PlanetNames.values();
-    private Random rand = new Random();
-    private HashSet<PlanetNames> used = new HashSet<>();
+    private static PlanetNames[] allNames = PlanetNames.values();
+    private static Random rand = new Random();
+    private static HashSet<PlanetNames> used = new HashSet<>();
 
     private PlanetNames(String name) {
         this.name = name;
@@ -140,9 +139,9 @@ public enum PlanetNames {
         return name;
     }
 
-    public final String randomPlanetName(){
+    public static final String randomPlanetName(){
         PlanetNames tmp = allNames[rand.nextInt(allNames.length)];
-        while(!used.contains(tmp)) {
+        while(used.contains(tmp)) {
             tmp = allNames[rand.nextInt(allNames.length)];
         }
         return tmp.getName();
