@@ -32,4 +32,13 @@ public class Universe {
             addSolarSystem(system);
         }
     }
+
+    @Override
+    public String toString() {
+        String ret = "Universe contains Solar Systems:\n";
+        for(SolarSystem s : systems.values()) {
+            ret += s.toString() + "\n";
+        }
+        return ret;
+    }
 }
