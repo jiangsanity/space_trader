@@ -23,6 +23,10 @@ public class Model {
         universe = Universe.getInstance();
     }
 
+    public static Model getInstance() {
+        return instance;
+    }
+
     public void initializeUniverse() {
         List<SolarSystem> systems = new ArrayList<>();
         SolarSystem milkyWay = new SolarSystem("Milky Way", TechLevels.HI_TECH, Resources.LOTS_OF_WATER, 3412, 231);
@@ -80,4 +84,7 @@ public class Model {
         universe.addSolarSystem(systems);
     }
 
+    public Universe getUniverse() {
+        return universe;
+    }
 }

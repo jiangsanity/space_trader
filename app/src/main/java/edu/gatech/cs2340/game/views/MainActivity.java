@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.game.views;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 import edu.gatech.cs2340.game.R;
 import edu.gatech.cs2340.game.entity.Player;
+import edu.gatech.cs2340.game.entity.Universe;
+import edu.gatech.cs2340.game.models.Model;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
+                                    Intent gameIntent = new Intent(MainActivity.this, GameActivity.class);
+                                    startActivity(gameIntent);
                                 }
                             })
                             .show();
