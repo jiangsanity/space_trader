@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.game.entity;
 
+import java.util.Random;
+
 public enum Resources {
     NO_SPECIAL_RESOURCES(0),
     MINERAL_RICH(1),
@@ -16,6 +18,8 @@ public enum Resources {
     WARLIKE(12);
 
     private int descriptionID;
+    private static Random rand = new Random();
+
 
     private Resources(int id){
         this.descriptionID = id;
@@ -23,5 +27,10 @@ public enum Resources {
 
     public int getDescriptionID() {
         return descriptionID;
+    }
+
+    public static final Resources randomResource(){
+        Resources[] allResources = Resources.values();
+        return allResources[rand.nextInt(allResources.length - 1)];
     }
 }

@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.game.entity;
 
+import java.util.Random;
+
 public enum TechLevels {
     PRE_AGRICULTURE(0),
     AGRICULTURE(1),
@@ -11,6 +13,7 @@ public enum TechLevels {
     HI_TECH(7);
 
     private int descriptionID;
+    private static Random rand = new Random();
 
     private TechLevels(int id){
         this.descriptionID = id;
@@ -18,5 +21,10 @@ public enum TechLevels {
 
     public int getDescriptionID() {
         return descriptionID;
+    }
+
+    public static final TechLevels randomTechLevel(){
+        TechLevels[] allLevels = TechLevels.values();
+        return allLevels[rand.nextInt(allLevels.length)];
     }
 }
