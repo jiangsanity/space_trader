@@ -3,6 +3,7 @@ package edu.gatech.cs2340.game.entity;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.Random;
 
 //treat as singleton
 public class Universe {
@@ -31,6 +32,18 @@ public class Universe {
         for(SolarSystem system : newSystemList) {
             addSolarSystem(system);
         }
+    }
+
+    public static void generateNewSS(String name, int numPlanets) {
+        Random rand = new Random();
+        Point2D newLoc = new Point2D(rand.nextInt(Integer.MAX_VALUE), rand.nextInt(Integer.MAX_VALUE));
+        SolarSystem newSS = new SolarSystem(name, TechLevels.randomTechLevel(), Resources.randomResource(), newLoc.getX(), newLoc.getY());
+
+        for(int i = 0; i < rand.nextInt(numPlanets) + 1; i++) {
+            newSS.addPlanet(new Planet(PlanetNames.randomPlanetName()));
+        }
+
+        addSolarSystem(newSS);
     }
 
     @Override

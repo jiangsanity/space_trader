@@ -129,7 +129,7 @@ public enum PlanetNames {
     private String name;
     private static PlanetNames[] allNames = PlanetNames.values();
     private static Random rand = new Random();
-    private static HashSet<PlanetNames> used = new HashSet<>();
+    private static HashSet<String> used = new HashSet<>();
 
     private PlanetNames(String name) {
         this.name = name;
@@ -140,14 +140,18 @@ public enum PlanetNames {
     }
 
     public static final String randomPlanetName(){
-        PlanetNames tmp = allNames[rand.nextInt(allNames.length)];
-        while(used.contains(tmp)) {
+        if(used.size() == allNames.length) {
+            refreshUsed();
+        }
+        PlanetNames tmp = allNames[rand.nextInt(allNames.length - 1)];
+        while(used.contains(tmp.getName())) {
             tmp = allNames[rand.nextInt(allNames.length)];
         }
+        used.add(tmp.getName());
         return tmp.getName();
     }
 
-    public void refreshUsed(){
+    public static void refreshUsed(){
         used = new HashSet<>();
         System.out.printf("WARNING: RESETTING USED NAMES!");
     }

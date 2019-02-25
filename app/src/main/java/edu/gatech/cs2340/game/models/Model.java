@@ -34,57 +34,44 @@ public class Model {
         milkyWay.addPlanet(new Planet("Venus"));
         milkyWay.addPlanet(new Planet("Earth"));
         milkyWay.addPlanet(new Planet("Mars"));
-        systems.add(milkyWay);
 
         SolarSystem fernaduh = new SolarSystem("Fernanduh", TechLevels.HI_TECH, Resources.LIFELESS, 5134, 2666);
-        fernaduh.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        fernaduh.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        fernaduh.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        fernaduh.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        fernaduh.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        systems.add(fernaduh);
+        fernaduh.generateRandPlanets(5);
 
         SolarSystem jamandus = new SolarSystem("Jamandus", TechLevels.MEDIEVAL, Resources.WARLIKE, 11234, 51552);
-        jamandus.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        jamandus.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        jamandus.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        jamandus.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        jamandus.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        jamandus.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        jamandus.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        jamandus.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        systems.add(jamandus);
+        jamandus.generateRandPlanets(7);
 
         SolarSystem travesty = new SolarSystem("Travesty", TechLevels.RENAISSANCE, Resources.WEIRD_MUSHROOMS, 140, 4432);
-        travesty.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        travesty.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        travesty.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        systems.add(travesty);
+        travesty.generateRandPlanets(3);
 
         SolarSystem andromajake = new SolarSystem("Andromajake", TechLevels.POST_INDUSTRIAL, Resources.MINERAL_RICH, 56123, 9984);
-        andromajake.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        andromajake.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        andromajake.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        andromajake.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        andromajake.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        andromajake.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        systems.add(andromajake);
+        andromajake.generateRandPlanets(6);
 
         SolarSystem lesnia = new SolarSystem("Lesnia", TechLevels.PRE_AGRICULTURE, Resources.POOR_SOIL, 91234 , 1235);
-        lesnia.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        lesnia.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        lesnia.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        lesnia.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        lesnia.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        lesnia.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        lesnia.addPlanet(new Planet(PlanetNames.randomPlanetName()));
-        lesnia.addPlanet(new Planet(PlanetNames.randomPlanetName()));
+        lesnia.generateRandPlanets(4);
+
+        systems.add(fernaduh);
+        systems.add(jamandus);
+        systems.add(travesty);
+        systems.add(andromajake);
         systems.add(lesnia);
 
-        universe.addSolarSystem(systems);
+        Universe.addSolarSystem(systems);
+
+        int randSSNum = 10;
+        int maxNumPlanets = 5;
+        for(int i = 0; i < randSSNum; i++) {
+            Universe.generateNewSS(PlanetNames.randomPlanetName(), maxNumPlanets);
+        }
     }
 
     public Universe getUniverse() {
         return universe;
+    }
+
+    public static void main(String[] args) {
+        Model m = new Model();
+        m.initializeUniverse();
+        System.out.println(m.getUniverse());
     }
 }

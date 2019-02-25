@@ -31,6 +31,12 @@ public class SolarSystem {
         }
     }
 
+    public void generateRandPlanets(int numPlanets) {
+        for(int i = 0; i < numPlanets; i++) {
+            this.addPlanet(new Planet(PlanetNames.randomPlanetName()));
+        }
+    }
+
     public List<Planet> getPlanets() {
         return planets;
     }
