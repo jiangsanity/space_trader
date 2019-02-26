@@ -34,6 +34,16 @@ public class Universe {
         }
     }
 
+    public static void removeSolarSystem(String ssName) {
+        systems.remove(ssName);
+    }
+
+    public static void removePlanet(String ssName, String pName) {
+        SolarSystem tempS = systems.get(ssName);
+        tempS.removePlanet(pName);
+        systems.put(ssName, tempS);
+    }
+
     public static void generateNewSS(String name, int numPlanets) {
         Random rand = new Random();
         Point2D newLoc = new Point2D(rand.nextInt(Integer.MAX_VALUE), rand.nextInt(Integer.MAX_VALUE));
@@ -44,6 +54,12 @@ public class Universe {
         }
 
         addSolarSystem(newSS);
+    }
+
+    public static void addPlanet(Planet p, SolarSystem s) {
+        SolarSystem tempS = systems.get(s.getName());
+        tempS.addPlanet(p);
+        systems.put(s.getName(), tempS);
     }
 
     @Override
