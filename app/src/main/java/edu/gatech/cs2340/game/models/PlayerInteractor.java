@@ -16,4 +16,11 @@ public class PlayerInteractor extends Interactor {
         getRepository().addNewShip(s);
     }
 
+    public void buy(String item, int n) {
+        getRepository().playerBuy(item, n);
+    }
+
+    public void sell(String item, int n) {
+        getRepository().playerSell(item, n);
+    }
 }

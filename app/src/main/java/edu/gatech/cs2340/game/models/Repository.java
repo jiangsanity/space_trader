@@ -103,4 +103,12 @@ public class Repository {
     public SolarSystem getRandomSS() {
         return Universe.getSystems().iterator().next();
     }
+
+    public void playerBuy(String item, int n) {
+        player.buy(item, n);
+    }
+
+    public void playerSell(String item, int n) {
+        player.sell(item, n);
+    }
 }

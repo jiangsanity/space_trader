@@ -13,12 +13,14 @@ import edu.gatech.cs2340.game.entity.Ship;
 import edu.gatech.cs2340.game.entity.Universe;
 import edu.gatech.cs2340.game.models.Model;
 import edu.gatech.cs2340.game.viewmodels.AddNewPlayerViewModel;
+import edu.gatech.cs2340.game.viewmodels.BuySellViewModel;
 import edu.gatech.cs2340.game.viewmodels.UniverseViewModel;
 
 public class GameActivity extends AppCompatActivity {
 
     private UniverseViewModel universeViewModel;
     private AddNewPlayerViewModel addNewPlayerViewModel;
+    private BuySellViewModel buySellViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         addNewPlayerViewModel = ViewModelProviders.of(this).get(AddNewPlayerViewModel.class);
+        buySellViewModel = ViewModelProviders.of(this).get(BuySellViewModel.class);
 
         universeViewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         universeViewModel.initializeUniverse();
