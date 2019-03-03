@@ -31,6 +31,15 @@ public class SolarSystem {
         }
     }
 
+    public void removePlanet(String s) {
+        for(int i = 0; i < planets.size(); i++) {
+            if(planets.get(i).getName().equals(s)) {
+                planets.remove(i);
+                return;
+            }
+        }
+    }
+
     public void generateRandPlanets(int numPlanets) {
         for(int i = 0; i < numPlanets; i++) {
             this.addPlanet(new Planet(PlanetNames.randomPlanetName()));
