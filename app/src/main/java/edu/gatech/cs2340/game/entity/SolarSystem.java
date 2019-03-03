@@ -9,6 +9,7 @@ public class SolarSystem {
     private Point2D pos;
     private TechLevels techLevel;
     private Resources resources;
+	private Marketplace marketplace;
 
     public SolarSystem(String name, TechLevels techLevel, Resources resources, int x, int y) {
         this.name = name;
@@ -16,6 +17,7 @@ public class SolarSystem {
         this.resources = resources;
         this.planets = new ArrayList<>();
         this.pos = new Point2D(x, y);
+		marketplace = new Marketplace(this.techlevel);
     }
 
     public SolarSystem(String name) {
