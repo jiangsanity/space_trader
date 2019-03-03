@@ -34,7 +34,7 @@ public class Model {
     }
 
     public UniverseInteractor getUniverseInteractor() {
-        return (UniverseInteractor) interactorMap.get("Student");
+        return (UniverseInteractor) interactorMap.get("Universe");
     }
 
 }
