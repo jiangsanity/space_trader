@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.game.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -10,16 +11,21 @@ import android.util.Log;
 import edu.gatech.cs2340.game.R;
 import edu.gatech.cs2340.game.entity.Universe;
 import edu.gatech.cs2340.game.models.Model;
+import edu.gatech.cs2340.game.viewmodels.UniverseViewModel;
 
 public class GameActivity extends AppCompatActivity {
+
+    private UniverseViewModel universeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        Model m = Model.getInstance();
-        m.initializeUniverse();
-        Universe u = m.getUniverse();
+
+
+        universeViewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
+        universeViewModel.initializeUniverse();
+        Universe u = universeViewModel.getUniverse();
 
         Log.i("Universe created:\n", u.toString());
         AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this,
