@@ -9,23 +9,31 @@ import android.os.Bundle;
 import android.util.Log;
 
 import edu.gatech.cs2340.game.R;
+import edu.gatech.cs2340.game.entity.Ship;
 import edu.gatech.cs2340.game.entity.Universe;
 import edu.gatech.cs2340.game.models.Model;
+import edu.gatech.cs2340.game.viewmodels.AddNewPlayerViewModel;
 import edu.gatech.cs2340.game.viewmodels.UniverseViewModel;
 
 public class GameActivity extends AppCompatActivity {
 
     private UniverseViewModel universeViewModel;
+    private AddNewPlayerViewModel addNewPlayerViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        addNewPlayerViewModel = ViewModelProviders.of(this).get(AddNewPlayerViewModel.class);
 
         universeViewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         universeViewModel.initializeUniverse();
         Universe u = universeViewModel.getUniverse();
+        Ship newShip = new Ship("Gnat", 20);
+        newShip.setCurrentSS(universeViewModel.getRandomSS());
+        addNewPlayerViewModel.setCurrentShip(newShip);
+
 
         Log.i("Universe created:\n", u.toString());
         AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this,

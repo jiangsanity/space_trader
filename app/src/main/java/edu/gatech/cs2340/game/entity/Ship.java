@@ -46,11 +46,21 @@ public class Ship {
             if(!inventory.containsKey(item) || inventory.get(item) == 0) throw new IllegalArgumentException();
             inventory.put(item, inventory.get(item) - 1);
             if(inventory.get(item) == 0) inventory.remove(item);
-            return currentSS
-
         } catch (IllegalArgumentException e) {
             System.out.println("Item does not exist in inventory");
         }
+        cargoUsed--;
+        return currentSS.getMarketplace().getPrice(item);
+    }
+
+    public int buy(String item) {
+        if(cargoUsed == cargoSpace) throw new IllegalArgumentException("No more space");
+        if(inventory.containsKey(item)) {
+            inventory.put(item, inventory.get(item) + 1);
+        } else {
+            inventory.put(item, 1);
+        }
+        return currentSS.getMarketplace().getPrice(item);
     }
 
 }

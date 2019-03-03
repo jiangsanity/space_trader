@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.game.entity;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -60,6 +61,10 @@ public class Universe {
         SolarSystem tempS = systems.get(s.getName());
         tempS.addPlanet(p);
         systems.put(s.getName(), tempS);
+    }
+
+    public static Collection<SolarSystem> getSystems() {
+        return systems.values();
     }
 
     @Override

@@ -12,4 +12,12 @@ public class Marketplace {
 		pricelog = new PriceLog(techlevel);
 	}
 
+	public int getPrice(String item) {
+		return pricelog.getPrice(item);
+	}
+
+	public int buyItem(String item) {
+		return pricelog.getPrice(item);
+	}
+
 }

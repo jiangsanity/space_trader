@@ -17,7 +17,7 @@ public class SolarSystem {
         this.resources = resources;
         this.planets = new ArrayList<>();
         this.pos = new Point2D(x, y);
-		marketplace = new Marketplace(this.techlevel);
+		marketplace = new Marketplace(this.techLevel);
     }
 
     public SolarSystem(String name) {
@@ -86,6 +86,10 @@ public class SolarSystem {
 
     public void setResources(Resources resources) {
         this.resources = resources;
+    }
+
+    public Marketplace getMarketplace() {
+        return marketplace;
     }
 
     @Override
