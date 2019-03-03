@@ -5,12 +5,12 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 
 import edu.gatech.cs2340.game.entity.Player;
+import edu.gatech.cs2340.game.entity.Ship;
 import edu.gatech.cs2340.game.models.Model;
 import edu.gatech.cs2340.game.models.PlayerInteractor;
 
 public class AddNewPlayerViewModel extends AndroidViewModel {
     private PlayerInteractor interactor;
-    private Player currentPlayer;
 
     public AddNewPlayerViewModel(@NonNull Application application) {
         super(application);
@@ -18,7 +18,11 @@ public class AddNewPlayerViewModel extends AndroidViewModel {
     }
 
     public void setCurrentPlayer(Player p) {
-        currentPlayer = p;
+        interactor.updatePlayer(p);
+    }
+
+    public void setCurrentShip(Ship s) {
+        interactor.addNewShip(s);
     }
 
 

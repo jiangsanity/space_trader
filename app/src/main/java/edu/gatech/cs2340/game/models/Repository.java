@@ -8,6 +8,7 @@ import edu.gatech.cs2340.game.entity.Planet;
 import edu.gatech.cs2340.game.entity.PlanetNames;
 import edu.gatech.cs2340.game.entity.Player;
 import edu.gatech.cs2340.game.entity.Resources;
+import edu.gatech.cs2340.game.entity.Ship;
 import edu.gatech.cs2340.game.entity.SolarSystem;
 import edu.gatech.cs2340.game.entity.TechLevels;
 import edu.gatech.cs2340.game.entity.Universe;
@@ -65,6 +66,10 @@ public class Repository {
         return universe;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     public void addSolarSystem(SolarSystem s) {
         Universe.addSolarSystem(s);
     }
@@ -79,5 +84,23 @@ public class Repository {
 
     public void removePlanetFromSS(String planetName, String ssName) {
         Universe.removePlanet(planetName, ssName);
+    }
+
+    public void updatePlayer(Player p) {
+        player.setDifficulty(p.getDifficulty());
+        player.setEngineerPoints(p.getEngineerPoints());
+        player.setFighterPoints(p.getFighterPoints());
+        player.setName(p.getName());
+        player.setPilotPoints(p.getPilotPoints());
+        player.setTraderPoints(p.getTraderPoints());
+        player.setShip(p.getShip());
+    }
+
+    public void addNewShip(Ship s) {
+        player.setShip(s);
+    }
+
+    public SolarSystem getRandomSS() {
+        return Universe.getSystems().iterator().next();
     }
 }
