@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.game.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,11 +19,14 @@ import edu.gatech.cs2340.game.R;
 import edu.gatech.cs2340.game.entity.Player;
 import edu.gatech.cs2340.game.entity.Universe;
 import edu.gatech.cs2340.game.models.Model;
+import edu.gatech.cs2340.game.viewmodels.AddNewPlayerViewModel;
+import edu.gatech.cs2340.game.viewmodels.UniverseViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    int difficulty;
-    int pointsLeft;
+    private AddNewPlayerViewModel addNewPlayerViewModel;
+    private int difficulty;
+    private int pointsLeft;
 
     Player player;
 
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        addNewPlayerViewModel = ViewModelProviders.of(this).get(AddNewPlayerViewModel.class);
+
 
         difficulty = 2;
         pointsLeft = 16;
@@ -68,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
                     player.setTraderPoints(Integer.parseInt(traderView.getText().toString()));
                     player.setEngineerPoints(Integer.parseInt(engineerView.getText().toString()));
                     Log.i("New Player", player.toString());
+                    addNewPlayerViewModel.setCurrentPlayer(player);
+                    UniverseViewModel universeBuilder = ViewModelProviders.of(MainActivity.this).get(UniverseViewModel.class);
+                    universeBuilder.initializeUniverse();
                     builder.setTitle("Success")
                             .setMessage("Player created:\n" + player.toString())
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -216,11 +226,6 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         if (id == R.id.ExitButton) {
             finish();
