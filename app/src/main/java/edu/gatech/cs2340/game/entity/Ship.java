@@ -1,39 +1,26 @@
 package edu.gatech.cs2340.game.entity;
+import java.util.HashMap;
 
 public class Ship {
     private String name;
-    private int difficulty;
-    private int pilotPoints;
-    private int fighterPoints;
-    private int traderPoints;
-    private int engineerPoints;
-    private String ship;
+    private int remainingSpace;
+    private int initialCargoCapacity;
+    private HashMap<String, Integer> inventory;
+    private int size;
 
     /**
-     * Constructs a new player
+     * Constructs a new ship
      * @param name the name of the player
-     * @param difficulty the difficulty of the game
-     * @param pilotPoints number of points for pilot skill
-     * @param fighterPoints number of points for fighter skill
-     * @param traderPoints number of points for trader skill
-     * @param engineerPoints number of points for engineering skill
-     * @param ship the type of ship the player owns
+     * @param initialCargoCapacity capacity of the ship
      */
-    public Ship(String name, int difficulty, int pilotPoints, int fighterPoints, int traderPoints,
-                int engineerPoints, String ship) {
+    public Ship(String name, int initialCargoCapacity) {
         this.name = name;
-        this.difficulty = difficulty;
-        this.pilotPoints = pilotPoints;
-        this.fighterPoints = fighterPoints;
-        this.traderPoints = traderPoints;
-        this.engineerPoints = engineerPoints;
-        this.ship = ship;
+        this.initialCargoCapacity = initialCargoCapacity;
+        inventory = new HashMap<>();
+        this.size = 0;
+        this.remainingSpace = initialCargoCapacity;
     }
 
-    public Ship() {
-        this("No Name", -1, -1, -1, -1,
-                -1, "Gnat");
-    }
 
     /**
      * Override toString method to output player attributes
@@ -42,160 +29,72 @@ public class Ship {
      */
     @Override
     public String toString() {
-        return "Name: " + name + "\nDifficulty: " + difficulty + "\nPilot Points: " + pilotPoints
-                + "\nFighter Points: " + fighterPoints + "\nTrader Points: " + traderPoints
-                + "\nEngineer Points: " + engineerPoints;
+        return "Ship: " + name + "\nTotal Cargo Hold: " + initialCargoCapacity
+                + "\nRemaining Cargo Capacity: " + remainingSpace
+                + "\nItems: " + getItems();
     }
 
     /**
-     * Getter method for player name
+     * Getter method for ship name
      *
-     * @return the name of the player
+     * @return the name the ship
      */
+    public String getName() { return name; }
 
-    public String getName() {
-        return name;
+
+    /**
+     * Getter method for size
+     *
+     * @return the number of items currently in the ship
+     */
+    public int getSize() {
+        return size;
     }
 
     /**
-     * Getter method for game difficulty
+     * Getter method the remaining space
      *
-     * @return the chosen difficulty of the game
+     * @return the remaining space
      */
-
-    public int getDifficulty() {
-        return difficulty;
+    public int getRemainingSpace() {
+        return remainingSpace;
     }
 
     /**
-     * Getter method for pilot points
+     * Getter method for initial cargo capacity
      *
-     * @return the number of points for pilot skill
+     * @return the initial cargo capacity
      */
+    public int getInitialCargoCapacity() {
+        return initialCargoCapacity;
+    }
 
-    public int getPilotPoints() {
-        return pilotPoints;
+
+    /**
+     * Adds item to inventory
+     *
+     * @param item good to be added to cargo
+     */
+    public void addItem(String item, int quantity) {
+        if (inventory.containsKey(item)) {
+            inventory.put(item, inventory.get(item) + quantity);
+        } else {
+            inventory.put(item, quantity);
+        }
+        size = size + quantity;
+        remainingSpace = remainingSpace - quantity;
     }
 
     /**
-     * Getter method for fighter points
+     * Gets a String of the items in the cargo hold
      *
-     * @return the number of points for fighter skill
+     * @returm string of all items
      */
-
-    public int getFighterPoints() {
-        return fighterPoints;
+    public String getItems() {
+        String str = "";
+        for (String i : inventory.keySet()) {
+            str+= i + ": " + inventory.get(i);
+        }
+        return str;
     }
-
-    /**
-     * Getter method for trader points
-     *
-     * @return the number of points for trader skill
-     */
-
-    public int getTraderPoints() {
-        return traderPoints;
-    }
-
-    /**
-     * Getter method for engineering points
-     *
-     * @return the number of points for engineering skill
-     */
-
-    public int getEngineerPoints() {
-        return engineerPoints;
-    }
-
-    /**
-     * Getter method for all points combined
-     *
-     * @return an array of the points for each skill
-     */
-
-    public int[] getAllPoints() {
-        return  new int[]{ pilotPoints, fighterPoints, traderPoints, engineerPoints};
-    }
-
-    /**
-     * Getter method for ship type
-     *
-     * @return the type of ship the player owns
-     */
-
-    public String getShip() {
-        return ship;
-    }
-
-    /**
-     * Setter method for player name
-     *
-     * @param name the player's name
-     */
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Setter method for game difficulty
-     *
-     * @param difficulty the game's difficulty
-     */
-
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    /**
-     * Setter method for pilot points
-     *
-     * @param pilotPoints points dedicated to pilot skill
-     */
-
-    public void setPilotPoints(int pilotPoints) {
-        this.pilotPoints = pilotPoints;
-    }
-
-    /**
-     * Setter method for fighter points
-     *
-     * @param fighterPoints points dedicated to fighter skill
-     */
-
-    public void setFighterPoints(int fighterPoints) {
-        this.fighterPoints = fighterPoints;
-    }
-
-    /**
-     * Setter method for trader points
-     *
-     * @param traderPoints points dedicated to trader skill
-     */
-
-    public void setTraderPoints(int traderPoints) {
-        this.traderPoints = traderPoints;
-    }
-
-    /**
-     * Setter method for engineering points
-     *
-     * @param engineerPoints points dedicated to engineering skill
-     */
-
-    public void setEngineerPoints(int engineerPoints) {
-        this.engineerPoints = engineerPoints;
-    }
-
-    /**
-     * Setter method for ship type
-     *
-     * @param ship type of ship the player owns
-     */
-
-    public void setShip(String ship) {
-        this.ship = ship;
-    }
-
 }

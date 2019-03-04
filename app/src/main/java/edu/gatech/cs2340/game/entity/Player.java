@@ -7,7 +7,7 @@ public class Player {
     private int fighterPoints;
     private int traderPoints;
     private int engineerPoints;
-    private String ship;
+    private Ship ship;
 
     /**
      * Constructs a new player
@@ -17,22 +17,21 @@ public class Player {
      * @param fighterPoints number of points for fighter skill
      * @param traderPoints number of points for trader skill
      * @param engineerPoints number of points for engineering skill
-     * @param ship the type of ship the player owns
      */
     public Player(String name, int difficulty, int pilotPoints, int fighterPoints, int traderPoints,
-                  int engineerPoints, String ship) {
+                  int engineerPoints) {
         this.name = name;
         this.difficulty = difficulty;
         this.pilotPoints = pilotPoints;
         this.fighterPoints = fighterPoints;
         this.traderPoints = traderPoints;
         this.engineerPoints = engineerPoints;
-        this.ship = ship;
+        this.ship = new Ship("Gnat", 10);
     }
 
     public Player() {
         this("No Name", -1, -1, -1, -1,
-                -1, "Gnat");
+                -1);
     }
 
     /**
@@ -123,7 +122,7 @@ public class Player {
      * @return the type of ship the player owns
      */
 
-    public String getShip() {
+    public Ship getShip() {
         return ship;
     }
 
@@ -191,11 +190,12 @@ public class Player {
     /**
      * Setter method for ship type
      *
-     * @param ship type of ship the player owns
+     * @param shipName the name of the ship
+     * @param initialCargoCapacity the capacity of the ship
      */
 
-    public void setShip(String ship) {
-        this.ship = ship;
+    public void setShip(String shipName, int initialCargoCapacity) {
+        this.ship = new Ship(shipName, initialCargoCapacity);
     }
 
 }

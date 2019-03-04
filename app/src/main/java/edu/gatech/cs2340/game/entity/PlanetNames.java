@@ -1,6 +1,11 @@
 package edu.gatech.cs2340.game.entity;
-
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.Queue;
+import java.util.List;
 import java.util.Random;
 
 public enum PlanetNames {
@@ -131,6 +136,7 @@ public enum PlanetNames {
     private static Random rand = new Random();
     private static HashSet<String> used = new HashSet<>();
 
+
     private PlanetNames(String name) {
         this.name = name;
     }
@@ -140,10 +146,18 @@ public enum PlanetNames {
     }
 
     public static final String randomPlanetName(){
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 0; i <= allNames.length; i++) {
+            numbers.add(i);
+        }
+        Collections.shuffle(numbers);
+        LinkedList ll = new LinkedList(Arrays.asList(numbers));
+        Queue<Integer> q = new LinkedList<Integer>(ll);
+
         if(used.size() == allNames.length) {
             refreshUsed();
         }
-        PlanetNames tmp = allNames[rand.nextInt(allNames.length - 1)];
+        PlanetNames tmp = allNames[rand.nextInt(allNames.length)];
         while(used.contains(tmp.getName())) {
             tmp = allNames[rand.nextInt(allNames.length)];
         }
