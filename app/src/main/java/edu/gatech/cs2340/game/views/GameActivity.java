@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import edu.gatech.cs2340.game.R;
 import edu.gatech.cs2340.game.entity.Ship;
@@ -50,6 +52,14 @@ public class GameActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+        Button marketplaceButton = findViewById(R.id.marketplaceButton);
+        marketplaceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent marketplaceIntent = new Intent(GameActivity.this, MarketplaceActivity.class);
+                startActivity(marketplaceIntent);
+            }
+        });
     }
 
     @Override

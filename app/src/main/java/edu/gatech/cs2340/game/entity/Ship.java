@@ -63,4 +63,12 @@ public class Ship {
         return currentSS.getMarketplace().getPrice(item);
     }
 
+    public int getCurrentStock(String good) {
+        try {
+            return inventory.get(good);
+        } catch(NullPointerException error) {
+            return 0;
+        }
+    }
+
 }

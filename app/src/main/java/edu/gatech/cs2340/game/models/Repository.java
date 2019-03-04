@@ -21,7 +21,7 @@ public class Repository {
     public Repository() {
         universe = Universe.getInstance();
         player = new Player();
-        initializeUniverse();
+        //initializeUniverse();
     }
 
     public void initializeUniverse() {
