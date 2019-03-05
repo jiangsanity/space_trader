@@ -1,7 +1,10 @@
 package edu.gatech.cs2340.game.models;
 
+import java.util.List;
+
 import edu.gatech.cs2340.game.entity.Player;
 import edu.gatech.cs2340.game.entity.Ship;
+import edu.gatech.cs2340.game.entity.SolarSystem;
 
 public class PlayerInteractor extends Interactor {
     public PlayerInteractor(Repository repo) {super(repo);}
@@ -22,5 +25,13 @@ public class PlayerInteractor extends Interactor {
 
     public void sell(String item, int n) {
         getRepository().playerSell(item, n);
+    }
+
+    public List<SolarSystem> getAvailableFlyPoints() {
+        return getRepository().getAvailableFlyPoints();
+    }
+
+    public void fly(SolarSystem s) {
+        getRepository().fly(s);
     }
 }

@@ -35,7 +35,7 @@ public class GameActivity extends AppCompatActivity {
         universeViewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         universeViewModel.initializeUniverse();
         Universe u = universeViewModel.getUniverse();
-        Ship newShip = new Ship("Gnat", 20);
+        Ship newShip = new Ship("Gnat", 20, 4000);
         newShip.setCurrentSS(universeViewModel.getRandomSS());
         addNewPlayerViewModel.setCurrentShip(newShip);
 

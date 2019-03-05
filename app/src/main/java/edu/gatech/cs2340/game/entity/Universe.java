@@ -2,6 +2,7 @@ package edu.gatech.cs2340.game.entity;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.List;
 import java.util.Random;
@@ -11,9 +12,11 @@ public class Universe {
     private static Map<String, SolarSystem> systems;
 
     private static Universe instance = new Universe();
+    private static HashSet<Point2D> solarSystemPoints;
 
     private Universe() {
         this.systems = new HashMap<>();
+        solarSystemPoints = new HashSet<>();
     }
 
     public static Universe getInstance() {
@@ -47,7 +50,12 @@ public class Universe {
 
     public static void generateNewSS(String name, int numPlanets) {
         Random rand = new Random();
-        Point2D newLoc = new Point2D(rand.nextInt(Integer.MAX_VALUE), rand.nextInt(Integer.MAX_VALUE));
+        int maxRange = 10000000;
+        Point2D newLoc = new Point2D(maxRange, maxRange);
+        while(solarSystemPoints.contains(newLoc)) {
+            newLoc = new Point2D(maxRange, maxRange);
+        }
+        solarSystemPoints.add(newLoc);
         SolarSystem newSS = new SolarSystem(name, TechLevels.randomTechLevel(), Resources.randomResource(), newLoc.getX(), newLoc.getY());
 
         for(int i = 0; i < rand.nextInt(numPlanets) + 1; i++) {
