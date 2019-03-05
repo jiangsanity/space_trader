@@ -51,9 +51,9 @@ public class Universe {
     public static void generateNewSS(String name, int numPlanets) {
         Random rand = new Random();
         int maxRange = 10000000;
-        Point2D newLoc = new Point2D(maxRange, maxRange);
+        Point2D newLoc = new Point2D(rand.nextInt(maxRange), rand.nextInt(maxRange));
         while(solarSystemPoints.contains(newLoc)) {
-            newLoc = new Point2D(maxRange, maxRange);
+            newLoc = new Point2D(rand.nextInt(maxRange), rand.nextInt(maxRange));
         }
         solarSystemPoints.add(newLoc);
         SolarSystem newSS = new SolarSystem(name, TechLevels.randomTechLevel(), Resources.randomResource(), newLoc.getX(), newLoc.getY());

@@ -48,10 +48,10 @@ public class Point2D {
                 y == point2D.y;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        int tmp = ( y +  ((x+1)/2));
+        return x +  ( tmp * tmp);
     }
 
 
