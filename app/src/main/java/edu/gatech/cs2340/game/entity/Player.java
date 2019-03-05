@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.game.entity;
 
+import java.util.List;
+
 public class Player {
     private String name;
     private int difficulty;
@@ -35,7 +37,7 @@ public class Player {
 
     public Player() {
         this("No Name", -1, -1, -1, -1,
-                -1, new Ship("Gnat", 20));
+                -1, new Ship("Gnat", 20, 4000));
     }
 
     /**
@@ -217,6 +219,14 @@ public class Player {
         for(int i = 0; i < n; i++) {
             balance += ship.sell(item);
         }
+    }
+
+    public List<SolarSystem> getAvailableFlyPoints() {
+        return ship.getAvailableFlyPoints();
+    }
+
+    public void fly(SolarSystem s) {
+        ship.fly(s);
     }
 
 }

@@ -94,6 +94,6 @@ public class SolarSystem {
 
     @Override
     public String toString() {
-        return name + "@" + pos.toString() +" : " + planets.toString();
+        return name + " TL:" + techLevel + ", RS:" + resources + " @ " + pos.toString() +" : " + planets.toString();
     }
 }
