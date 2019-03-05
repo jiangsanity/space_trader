@@ -12,6 +12,8 @@ public class GoodEntry {
     private int itemPrice;
     private int shipInventory;
     private int marketInventory;
+    private static int shipCargoUsed;
+
 
     public GoodEntry(String itemName, int itemPrice, int shipInventory, int marketInventory) {
         this.itemName = itemName;
@@ -42,9 +44,16 @@ public class GoodEntry {
     public void buyGood(int amount) {
         try {
             //marketInventory -= amount;
+            if(shipCargoUsed == Model.getInstance().getPlayerInteractor().getPlayer().getShip().getCargoSpace()) {
+                throw new IllegalArgumentException();
+            }
             Model.getInstance().getPlayerInteractor().buy(itemName, amount);
             shipInventory += amount;
-        } catch (Exception error) {
+            shipCargoUsed++;
+        } catch (IllegalArgumentException e) {
+            Log.i("Error", "cannot buy more than available space");
+        }
+        catch (Exception error) {
             Log.i("Error", error.toString());
         }
         //do actual logic here

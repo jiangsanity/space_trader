@@ -89,6 +89,7 @@ public class Ship {
         } else {
             inventory.put(item, 1);
         }
+        cargoUsed++;
         return currentSS.getMarketplace().getPrice(item);
     }
 
