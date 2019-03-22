@@ -115,6 +115,7 @@ public class Ship {
     public void fly(SolarSystem s) {
         fuelCellLevel -= Point2D.distance(s.getPos(), currentSS.getPos());
         currentSS = s;
+        generateFlyPoints();
     }
 
 //    public void fly(SolarSystem s, Planet p) {
