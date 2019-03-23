@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import edu.gatech.cs2340.game.R;
 import edu.gatech.cs2340.game.entity.Ship;
+import edu.gatech.cs2340.game.entity.SolarSystem;
 import edu.gatech.cs2340.game.entity.Universe;
 import edu.gatech.cs2340.game.models.Model;
 import edu.gatech.cs2340.game.viewmodels.AddNewPlayerViewModel;
@@ -69,6 +71,15 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(travelIntent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        TextView currentSStext = findViewById(R.id.current_ss_text);
+        SolarSystem currentSS = Model.getInstance().getPlayerInteractor().getPlayer().getShip().getCurrentSS();
+        currentSStext.setText("Current solar system: " + currentSS.getName());
     }
 
     @Override
