@@ -229,4 +229,13 @@ public class Player {
         ship.fly(s);
     }
 
+    public void refuel() {
+        int cost = ship.refuel();
+        if(cost > balance) {
+            System.out.println("Balance too low to refuel!");
+        } else {
+            balance -= cost;
+            System.out.println("Successful Refuel");
+        }
+    }
 }

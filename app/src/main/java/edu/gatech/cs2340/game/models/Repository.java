@@ -119,5 +119,9 @@ public class Repository {
     public void fly(SolarSystem s) {
         player.fly(s);
     }
+
+    public void refuel() {
+        player.refuel();
+    }
 }
 
