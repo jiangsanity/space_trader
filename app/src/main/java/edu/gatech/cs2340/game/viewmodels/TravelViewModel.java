@@ -26,4 +26,8 @@ public class TravelViewModel extends AndroidViewModel {
     public void fly(SolarSystem s) {
         interactor.fly(s);
     }
+
+    public void refuel() {
+        interactor.refuel();
+    }
 }

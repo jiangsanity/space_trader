@@ -34,4 +34,8 @@ public class PlayerInteractor extends Interactor {
     public void fly(SolarSystem s) {
         getRepository().fly(s);
     }
+
+    public void refuel() {
+        getRepository().refuel();
+    }
 }

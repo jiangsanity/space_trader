@@ -122,8 +122,10 @@ public class Ship {
 //
 //    }
 
-    public void refuel() {
+    public int refuel() {
         this.fuelCellLevel = maxFuelCapacity;
+        generateFlyPoints();
+        return 100;
     }
 
 }
