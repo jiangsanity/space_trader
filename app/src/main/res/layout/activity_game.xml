@@ -6,14 +6,37 @@
     android:layout_height="match_parent"
     tools:context="edu.gatech.cs2340.game.views.GameActivity">
 
-    <Button
-        android:id="@+id/marketplaceButton"
-        android:layout_width="136dp"
-        android:layout_height="62dp"
-        android:text="Go To Marketplace"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/travelButton"
+            android:layout_width="136dp"
+            android:layout_height="62dp"
+            android:text="Go to Travel Screen"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="119dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
+
+        <Button
+            android:id="@+id/marketplaceButton"
+            android:layout_width="136dp"
+            android:layout_height="62dp"
+            android:text="Go To Marketplace"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

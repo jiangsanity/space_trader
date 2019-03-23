@@ -60,6 +60,15 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(marketplaceIntent);
             }
         });
+
+        Button travelButton = findViewById(R.id.travelButton);
+        travelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent travelIntent = new Intent(GameActivity.this, TravelActivity.class);
+                startActivity(travelIntent);
+            }
+        });
     }
 
     @Override

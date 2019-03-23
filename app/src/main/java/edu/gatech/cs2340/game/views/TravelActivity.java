@@ -27,11 +27,11 @@ public class TravelActivity extends AppCompatActivity {
         //how to take care of when no solar systems are in range???
         SolarSystem selection = null; //replace this with gui selection of solar system
         //the method should take care of it from here
-        travelViewModel.fly(selection);
+        //travelViewModel.fly(selection);
     }
-
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(true);
-    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        moveTaskToBack(true);
+//    }
 }
