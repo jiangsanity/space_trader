@@ -113,7 +113,7 @@ public class Ship {
     }
 
     public void fly(SolarSystem s) {
-        fuelCellLevel -= (Point2D.distance(s.getPos(), currentSS.getPos()) / distancePerCell);
+        fuelCellLevel -= getFlyCost(s);
         currentSS = s;
         generateFlyPoints();
     }
@@ -126,9 +126,16 @@ public class Ship {
 //
 //    }
 
-    public int refuel() {
-        this.fuelCellLevel = maxFuelCapacity;
+    public boolean refuel() {
+        if (fuelCellLevel == maxFuelCapacity) {
+            return false;
+        }
+        fuelCellLevel = maxFuelCapacity;
         generateFlyPoints();
+        return true;
+    }
+
+    public int getRefuelCost() {
         return 100;
     }
 

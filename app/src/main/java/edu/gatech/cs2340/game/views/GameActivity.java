@@ -26,6 +26,9 @@ public class GameActivity extends AppCompatActivity {
     private AddNewPlayerViewModel addNewPlayerViewModel;
     private BuySellViewModel buySellViewModel;
 
+    private TextView balanceText;
+    private TextView fuelText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +40,7 @@ public class GameActivity extends AppCompatActivity {
         universeViewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         universeViewModel.initializeUniverse();
         Universe u = universeViewModel.getUniverse();
-        Ship newShip = new Ship("Gnat", 20, 4000);
+        final Ship newShip = new Ship("Gnat", 20, 4000);
         newShip.setCurrentSS(universeViewModel.getRandomSS());
         addNewPlayerViewModel.setCurrentShip(newShip);
 
@@ -71,6 +74,19 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(travelIntent);
             }
         });
+
+        balanceText = findViewById(R.id.balanceText);
+
+        fuelText = findViewById(R.id.fuelText);
+
+        Button refuelButton = findViewById(R.id.refuel_button);
+        refuelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Model.getInstance().getPlayerInteractor().getPlayer().refuel();
+                updateText();
+            }
+        });
     }
 
     @Override
@@ -80,10 +96,16 @@ public class GameActivity extends AppCompatActivity {
         TextView currentSStext = findViewById(R.id.current_ss_text);
         SolarSystem currentSS = Model.getInstance().getPlayerInteractor().getPlayer().getShip().getCurrentSS();
         currentSStext.setText("Current solar system: " + currentSS.getName());
+        updateText();
     }
 
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+    }
+
+    private void updateText() {
+        balanceText.setText("Balance: " + Model.getInstance().getPlayerInteractor().getPlayer().getBalance());
+        fuelText.setText("Fuel: " + Model.getInstance().getPlayerInteractor().getPlayer().getFuelCellLevel());
     }
 }

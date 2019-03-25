@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import edu.gatech.cs2340.game.R;
 import edu.gatech.cs2340.game.entity.SolarSystem;
+import edu.gatech.cs2340.game.models.Model;
 import edu.gatech.cs2340.game.views.SSItemFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class SSItemRecyclerViewAdapter extends RecyclerView.Adapter<SSItemRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.system = mValues.get(position);
         holder.nameView.setText(mValues.get(position).getName());
-        holder.positionView.setText(mValues.get(position).getPos().toString());
+        holder.costView.setText("Fuel needed: " + Model.getInstance().getPlayerInteractor().getPlayer().getFlyCost(mValues.get(position)));
         holder.resourcesView.setText(mValues.get(position).getResources().toString());
         holder.techLevelView.setText(mValues.get(position).getTechLevel().toString());
 
@@ -61,7 +62,7 @@ public class SSItemRecyclerViewAdapter extends RecyclerView.Adapter<SSItemRecycl
         private final Button goButton;
 
         private final TextView nameView;
-        private final TextView positionView;
+        private final TextView costView;
         private final TextView techLevelView;
         private final TextView resourcesView;
 
@@ -69,7 +70,7 @@ public class SSItemRecyclerViewAdapter extends RecyclerView.Adapter<SSItemRecycl
             super(view);
             mView = view;
             nameView = (TextView) view.findViewById(R.id.ss_name);
-            positionView = (TextView) view.findViewById(R.id.ss_position);
+            costView =(TextView) view.findViewById(R.id.ss_fuelcost);
             techLevelView = (TextView) view.findViewById(R.id.ss_techlevel);
             resourcesView = (TextView) view.findViewById(R.id.ss_resources);
             goButton = (Button) view.findViewById(R.id.goButton);

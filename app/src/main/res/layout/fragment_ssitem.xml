@@ -20,11 +20,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/ss_position"
+            android:id="@+id/ss_fuelcost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:text="Posiiton"
+            android:text="Cost"
             android:textAppearance="?attr/textAppearanceListItem" />
 
     </LinearLayout>
