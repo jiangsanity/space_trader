@@ -3,6 +3,7 @@ package edu.gatech.cs2340.game.models;
 import java.util.List;
 
 import edu.gatech.cs2340.game.entity.Player;
+import edu.gatech.cs2340.game.entity.Point2D;
 import edu.gatech.cs2340.game.entity.Ship;
 import edu.gatech.cs2340.game.entity.SolarSystem;
 
@@ -41,5 +42,9 @@ public class PlayerInteractor extends Interactor {
 
     public int getFuelCellLevel() {
         return getRepository().getFuelCellLevel();
+    }
+
+    public int getFlyCost(SolarSystem s) {
+        return getRepository().getFlyCost(s);
     }
 }

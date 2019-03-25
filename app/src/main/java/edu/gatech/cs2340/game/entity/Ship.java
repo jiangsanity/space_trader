@@ -118,6 +118,10 @@ public class Ship {
         generateFlyPoints();
     }
 
+    public int getFlyCost(SolarSystem s) {
+        return (int)Point2D.distance(s.getPos(), currentSS.getPos());
+    }
+
 //    public void fly(SolarSystem s, Planet p) {
 //
 //    }
