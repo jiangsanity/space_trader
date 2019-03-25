@@ -113,13 +113,13 @@ public class Ship {
     }
 
     public void fly(SolarSystem s) {
-        fuelCellLevel -= Point2D.distance(s.getPos(), currentSS.getPos());
+        fuelCellLevel -= (Point2D.distance(s.getPos(), currentSS.getPos()) / distancePerCell);
         currentSS = s;
         generateFlyPoints();
     }
 
     public int getFlyCost(SolarSystem s) {
-        return (int)Point2D.distance(s.getPos(), currentSS.getPos());
+        return (int)(Point2D.distance(s.getPos(), currentSS.getPos()) / distancePerCell);
     }
 
 //    public void fly(SolarSystem s, Planet p) {
