@@ -225,6 +225,10 @@ public class Player {
         return ship.getAvailableFlyPoints();
     }
 
+    public int getFuelCellLevel() {
+        return ship.getFuelCellLevel();
+    }
+
     public void fly(SolarSystem s) {
         ship.fly(s);
     }
