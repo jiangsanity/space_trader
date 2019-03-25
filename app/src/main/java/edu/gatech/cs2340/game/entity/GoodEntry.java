@@ -34,6 +34,7 @@ public class GoodEntry {
     }
 
     public int getShipInventory() {
+        shipInventory = Model.getInstance().getPlayerInteractor().getPlayer().getShip().getCurrentStock(itemName);
         return shipInventory;
     }
 

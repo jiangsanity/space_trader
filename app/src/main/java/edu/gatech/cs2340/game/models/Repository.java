@@ -123,5 +123,9 @@ public class Repository {
     public void refuel() {
         player.refuel();
     }
+
+    public int getFuelCellLevel() {
+        player.getFuelCellLevel();
+    }
 }
 

@@ -38,4 +38,8 @@ public class PlayerInteractor extends Interactor {
     public void refuel() {
         getRepository().refuel();
     }
+
+    public int getFuelCellLevel() {
+        return getRepository().getFuelCellLevel();
+    }
 }
