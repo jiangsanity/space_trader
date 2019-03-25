@@ -7,6 +7,7 @@ import java.util.List;
 import edu.gatech.cs2340.game.entity.Planet;
 import edu.gatech.cs2340.game.entity.PlanetNames;
 import edu.gatech.cs2340.game.entity.Player;
+import edu.gatech.cs2340.game.entity.Point2D;
 import edu.gatech.cs2340.game.entity.Resources;
 import edu.gatech.cs2340.game.entity.Ship;
 import edu.gatech.cs2340.game.entity.SolarSystem;
@@ -120,12 +121,16 @@ public class Repository {
         player.fly(s);
     }
 
+    public int getFlyCost(SolarSystem s) {
+        return player.getFlyCost(s);
+    }
+
     public void refuel() {
         player.refuel();
     }
 
     public int getFuelCellLevel() {
-        player.getFuelCellLevel();
+        return player.getFuelCellLevel();
     }
 }
 

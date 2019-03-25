@@ -233,6 +233,10 @@ public class Player {
         ship.fly(s);
     }
 
+    public int getFlyCost(SolarSystem s) {
+        return ship.getFlyCost(s);
+    }
+
     public void refuel() {
         int cost = ship.refuel();
         if(cost > balance) {
