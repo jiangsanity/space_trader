@@ -33,6 +33,12 @@ public class Marketplace {
 		return pricelog.getPrice(item);
 	}
 
+	public void priceHike(int percent) {
+		for (GoodEntry e : goodsList) {
+			e.itemPriceHike(percent);
+		}
+	}
+
 
 
 }
