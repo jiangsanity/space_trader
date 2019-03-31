@@ -68,4 +68,8 @@ public class GoodEntry {
             //do actual logic here
         }
     }
+
+    public void itemPriceHike(int percent) {
+        this.itemPrice = itemPrice + (int)(itemPrice * (percent / 100.0));
+    }
 }

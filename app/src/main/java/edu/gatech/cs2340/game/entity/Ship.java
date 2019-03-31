@@ -35,6 +35,10 @@ public class Ship {
         this.name = name;
     }
 
+    public void setFuelCellLevel(int fuelCellLevel) {
+        this.fuelCellLevel = fuelCellLevel;
+    }
+
     public int getCargoSpace() {
         return cargoSpace;
     }
