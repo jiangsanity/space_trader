@@ -1,6 +1,8 @@
 package edu.gatech.cs2340.game.models;
 
 
+import android.content.SharedPreferences;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +65,10 @@ public class Repository {
         }
     }
 
+    public void initializeUniverse(SharedPreferences prefs) {
+        universe.restoreUniverse(prefs);
+    }
+
     public Universe getUniverse() {
         return universe;
     }
@@ -94,6 +100,7 @@ public class Repository {
         player.setName(p.getName());
         player.setPilotPoints(p.getPilotPoints());
         player.setTraderPoints(p.getTraderPoints());
+        player.setBalance(p.getBalance());
         player.setShip(p.getShip());
     }
 

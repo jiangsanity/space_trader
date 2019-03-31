@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.game.entity;
 
+import android.content.SharedPreferences;
+
 import java.util.List;
 
 public class Player {
@@ -24,7 +26,7 @@ public class Player {
      * @param ship the type of ship the player owns
      */
     public Player(String name, int difficulty, int pilotPoints, int fighterPoints, int traderPoints,
-                  int engineerPoints, Ship ship) {
+                  int engineerPoints, int balance, Ship ship) {
         this.name = name;
         this.difficulty = difficulty;
         this.pilotPoints = pilotPoints;
@@ -32,12 +34,23 @@ public class Player {
         this.traderPoints = traderPoints;
         this.engineerPoints = engineerPoints;
         this.ship = ship;
-        this.balance = 2000;
+        this.balance = balance;
     }
 
     public Player() {
         this("No Name", -1, -1, -1, -1,
-                -1, new Ship("Gnat", 20, 4000));
+                -1, 2000, new Ship("Gnat", 20, 4000));
+    }
+
+    public Player(SharedPreferences prefs) {
+        this( prefs.getString("pName", "PlayerName"),
+        prefs.getInt("pDiff", 0),
+        prefs.getInt("pPoints", 0),
+        prefs.getInt("fPoints", 0),
+        prefs.getInt("tPoints", 0),
+        prefs.getInt("ePoints", 0),
+        prefs.getInt("pBalance", 9999),
+        new Ship(prefs));
     }
 
     /**
@@ -197,6 +210,10 @@ public class Player {
         this.engineerPoints = engineerPoints;
     }
 
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
     /**
      * Setter method for ship type
      *
@@ -247,5 +264,18 @@ public class Player {
             }
             System.out.println("Successful Refuel");
         }
+    }
+
+    public void savePlayer(SharedPreferences prefs) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("pName", name);
+        editor.putInt("pDiff", difficulty);
+        editor.putInt("pPoints", pilotPoints);
+        editor.putInt("fPoints", fighterPoints);
+        editor.putInt("tPoints", traderPoints);
+        editor.putInt("ePoints", engineerPoints);
+        editor.putInt("pBalance", balance);
+        editor.apply();
+        ship.saveShip(prefs);
     }
 }

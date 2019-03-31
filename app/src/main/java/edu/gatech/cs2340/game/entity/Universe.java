@@ -1,5 +1,10 @@
 package edu.gatech.cs2340.game.entity;
 
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -75,6 +80,10 @@ public class Universe {
         return systems.values();
     }
 
+    public static Map<String, SolarSystem> getSystemsMap() {
+        return systems;
+    }
+
     @Override
     public String toString() {
         String ret = "Universe contains Solar Systems:\n";
@@ -82,5 +91,31 @@ public class Universe {
             ret += s.toString() + "\n";
         }
         return ret;
+    }
+
+    public void saveUniverse(SharedPreferences prefs) {
+        saveHashMap("systems", systems, prefs);
+    }
+
+    public void restoreUniverse(SharedPreferences prefs) {
+        systems = restoreHashMap("systems", prefs);
+    }
+
+    //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
+    public void saveHashMap(String key , Object obj, SharedPreferences prefs) {
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(obj);
+        editor.putString(key,json);
+        editor.apply();
+    }
+
+    //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
+    public static HashMap<String, SolarSystem> restoreHashMap(String key, SharedPreferences prefs) {
+        Gson gson = new Gson();
+        String json = prefs.getString(key,"");
+        java.lang.reflect.Type type = new TypeToken<HashMap<String, SolarSystem>>(){}.getType();
+        HashMap<String, SolarSystem> obj = gson.fromJson(json, type);
+        return obj;
     }
 }

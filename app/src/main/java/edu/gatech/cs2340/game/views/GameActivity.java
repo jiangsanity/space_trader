@@ -1,8 +1,10 @@
 package edu.gatech.cs2340.game.views;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,14 +40,15 @@ public class GameActivity extends AppCompatActivity {
         buySellViewModel = ViewModelProviders.of(this).get(BuySellViewModel.class);
 
         universeViewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
-        universeViewModel.initializeUniverse();
         Universe u = universeViewModel.getUniverse();
-        final Ship newShip = new Ship("Gnat", 20, 4000);
-        newShip.setCurrentSS(universeViewModel.getRandomSS());
+        Ship newShip = Model.getInstance().getPlayerInteractor().getPlayer().getShip();
+        SolarSystem currentSS = newShip.getCurrentSS();
+        Log.i("currentSS", newShip.getCurrentSS().getName());
+        newShip.setCurrentSS(currentSS);
         addNewPlayerViewModel.setCurrentShip(newShip);
 
 
-        Log.i("Universe created:\n", u.toString());
+        //Log.i("Universe created:\n", u.toString());
         AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this,
                 R.style.Theme_MaterialComponents_Dialog_Alert);
         builder.setTitle("Success")
@@ -85,6 +88,16 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Model.getInstance().getPlayerInteractor().getPlayer().refuel();
                 updateText();
+            }
+        });
+
+        Button saveButton = findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences prefs = getSharedPreferences("main_prefs", Context.MODE_PRIVATE);
+                Model.getInstance().getPlayerInteractor().getPlayer().savePlayer(prefs);
+                Model.getInstance().getUniverseInteractor().getUniverse().saveUniverse(prefs);
             }
         });
     }

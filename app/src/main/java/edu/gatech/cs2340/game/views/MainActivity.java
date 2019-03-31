@@ -1,8 +1,10 @@
 package edu.gatech.cs2340.game.views;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +39,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        SharedPreferences prefs = getSharedPreferences("main_prefs", Context.MODE_PRIVATE);
+
         addNewPlayerViewModel = ViewModelProviders.of(this).get(AddNewPlayerViewModel.class);
+
+        if(prefs.getString("pName", null) != null) {
+            UniverseViewModel universeBuilder = ViewModelProviders.of(MainActivity.this).get(UniverseViewModel.class);
+            universeBuilder.initializeUniverse(prefs);
+            player = new Player(prefs);
+            addNewPlayerViewModel.setCurrentPlayer(player);
+            Intent gameIntent = new Intent(MainActivity.this, GameActivity.class);
+            startActivity(gameIntent);
+            return;
+        }
 
 
         difficulty = 2;
