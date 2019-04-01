@@ -43,7 +43,10 @@ public class GameActivity extends AppCompatActivity {
         Universe u = universeViewModel.getUniverse();
         Ship newShip = Model.getInstance().getPlayerInteractor().getPlayer().getShip();
         SolarSystem currentSS = newShip.getCurrentSS();
-        Log.i("currentSS", newShip.getCurrentSS().getName());
+        if (currentSS == null) {
+            newShip = new Ship("Gnat", 20, 4000);
+            currentSS = universeViewModel.getRandomSS();
+        }
         newShip.setCurrentSS(currentSS);
         addNewPlayerViewModel.setCurrentShip(newShip);
 
