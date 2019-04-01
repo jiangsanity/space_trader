@@ -4,6 +4,9 @@ import android.content.SharedPreferences;
 
 import java.util.List;
 
+/**
+ * Represents a space trader Player
+ */
 public class Player {
     private String name;
     private int difficulty;
@@ -24,6 +27,7 @@ public class Player {
      * @param traderPoints number of points for trader skill
      * @param engineerPoints number of points for engineering skill
      * @param ship the type of ship the player owns
+     * @param balance the amount of money the player has in their account
      */
     public Player(String name, int difficulty, int pilotPoints, int fighterPoints, int traderPoints,
                   int engineerPoints, int balance, Ship ship) {
@@ -37,11 +41,19 @@ public class Player {
         this.balance = balance;
     }
 
+    /**
+     * Assigns initial values to the constructor
+     */
     public Player() {
         this("No Name", -1, -1, -1, -1,
                 -1, 2000, new Ship("Gnat", 20, 4000));
     }
 
+    /**
+     * Adds values to player attributes when save method is called
+     *
+     * @param prefs the values of the attributes of player when the game was saved
+     */
     public Player(SharedPreferences prefs) {
         this( prefs.getString("pName", "PlayerName"),
         prefs.getInt("pDiff", 0),
@@ -65,6 +77,11 @@ public class Player {
                 + "\nEngineer Points: " + engineerPoints;
     }
 
+    /**
+     * Getter method for player's balance
+     *
+     * @return the player's balance
+     */
     public int getBalance() {
         return balance;
     }
@@ -210,6 +227,11 @@ public class Player {
         this.engineerPoints = engineerPoints;
     }
 
+    /**
+     * Setter method for the player's balance
+     *
+     * @param balance the player's money balance
+     */
     public void setBalance(int balance) {
         this.balance = balance;
     }
@@ -224,6 +246,12 @@ public class Player {
         this.ship = ship;
     }
 
+    /**
+     * Method that allows player to buy any number of an item
+     *
+     * @param item the item the player wants to buy
+     * @param n the number of the item the player wants to buy
+     */
     public void buy(String item, int n) {
         int itemPrice = ship.getCurrentSS().getMarketplace().getPrice(item);
         for(int i = 0; i < n; i++) {
@@ -232,28 +260,59 @@ public class Player {
         }
     }
 
+    /**
+     * Method that allows player to sell any number of an item
+     *
+     * @param item the item the player wants to sell
+     * @param n the number of items the player wants to sell
+     */
     public void sell(String item, int n) {
         for(int i = 0; i < n; i++) {
             balance += ship.sell(item);
         }
     }
 
+    /**
+     * Method that gets the player's available fly points
+     *
+     * @return the number of available fly points the player has
+     */
     public List<SolarSystem> getAvailableFlyPoints() {
         return ship.getAvailableFlyPoints();
     }
 
+    /**
+     * Getter method for fuel cell level
+     *
+     * @return the ship's available fuel cell level
+     */
     public int getFuelCellLevel() {
         return ship.getFuelCellLevel();
     }
 
+    /**
+     * Method that allows player to fly to another solar system
+     *
+     * @param s the solar system the player wants to travel to
+     */
     public void fly(SolarSystem s) {
         ship.fly(s);
     }
 
+    /**
+     * Getter method for the cost (fly points) it takes to fly to another solar system
+     *
+     * @param s the solar system the player wants to travel to
+     * @return the cost it takes to fly to other solar system
+     */
     public int getFlyCost(SolarSystem s) {
         return ship.getFlyCost(s);
     }
 
+    /**
+     * Method that allows player to refuel their ship
+     *
+     */
     public void refuel() {
         int cost = ship.getRefuelCost();
         if(cost > balance) {
@@ -266,6 +325,10 @@ public class Player {
         }
     }
 
+    /**
+     * Method that saves player's information before they exit the app
+     * @param prefs the player values to be saved for the next time the app is opened
+     */
     public void savePlayer(SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("pName", name);
