@@ -1,5 +1,4 @@
 package edu.gatech.cs2340.game;
-
 import org.junit.Test;
 
 import static org.junit.Assert.*;
