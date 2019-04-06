@@ -255,7 +255,12 @@ public class Player {
     public void buy(String item, int n) {
         int itemPrice = ship.getCurrentSS().getMarketplace().getPrice(item);
         for(int i = 0; i < n; i++) {
-            if ((itemPrice) > balance) throw new IllegalArgumentException("Not Enough Money");
+            if (itemPrice > balance) {
+                for (int j = 0; j < i; j++) {
+                    balance += ship.sell(item);
+                }
+                throw new IllegalArgumentException("Not Enough Money");
+            }
             balance -= ship.buy(item);
         }
     }

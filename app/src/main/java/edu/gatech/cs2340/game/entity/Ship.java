@@ -25,7 +25,6 @@ public class Ship {
     private int cargoUsed;
     private HashMap<String, Integer> inventory;
 
-
     private SolarSystem currentSS;
     private List<SolarSystem> availableFlyPoints;
 

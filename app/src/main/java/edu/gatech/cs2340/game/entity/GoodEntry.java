@@ -8,11 +8,11 @@ import edu.gatech.cs2340.game.models.Model;
  * A representation of a good in the marketplace
  */
 public class GoodEntry {
-    private String itemName;
-    private int itemPrice;
-    private int shipInventory;
-    private int marketInventory;
-    private static int shipCargoUsed;
+private String itemName;
+private int itemPrice;
+private int shipInventory;
+private int marketInventory;
+private static int shipCargoUsed;
 
 
     public GoodEntry(String itemName, int itemPrice, int shipInventory, int marketInventory) {
@@ -52,12 +52,8 @@ public class GoodEntry {
             shipInventory += amount;
             shipCargoUsed++;
         } catch (IllegalArgumentException e) {
-            Log.i("Error", "cannot buy more than available space");
+            System.out.println("Error, cannot buy more than available space");
         }
-        catch (Exception error) {
-            Log.i("Error", error.toString());
-        }
-        //do actual logic here
     }
 
     public void sellGood(int amount) {
