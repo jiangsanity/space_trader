@@ -19,7 +19,7 @@ public class Marketplace {
 	public Marketplace(TechLevels techlevel) {
 		pricelog = new PriceLog(techlevel);
         Ship ship = Model.getInstance().getPlayerInteractor().getPlayer().getShip();
-        Log.i("Ship", ship.toString());
+        //Log.i("Ship", ship.toString());
 		for (String good : pricelog.getItems()) {
 		    goodsList.add(new GoodEntry(good, getPrice(good), ship.getCurrentStock(good), 9999));
         }
