@@ -15,12 +15,13 @@ import java.util.List;
  */
 
 public class Ship {
-    private String name;
+    private final String name;
     private final int maxFuelCapacity;
     private int fuelCellLevel;
     private final int distancePerCell;
     private final int cargoSpace;
     private int cargoUsed;
+    private int refuelCost;
     private final HashMap<String, Integer> inventory;
 
     private SolarSystem currentSS;
@@ -41,6 +42,7 @@ public class Ship {
         fuelCellLevel = maxFuelCapacity;
         distancePerCell = 10000;
         inventory = new HashMap<>();
+        refuelCost = 100;
     }
 
     /**
@@ -56,25 +58,8 @@ public class Ship {
         distancePerCell = 10000;
         cargoSpace = prefs.getInt("cargoSpace", 1000);
         cargoUsed = prefs.getInt("cargoUsed", 0);
-        inventory = restoreHashMap("inventory", prefs);
+        inventory = restoreHashMap(prefs);
         currentSS = Universe.getSystemsMap().get(prefs.getString("currentSS", ""));
-    }
-
-    /**
-     * Getter method for the name of the ship
-     *
-     * @return the name of the ship
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Setter method for the name of the ship
-     * @param name the name of the ship
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**
@@ -123,30 +108,12 @@ public class Ship {
     }
 
     /**
-     * Getter method for the maximum fuel capacity of the ship
-     *
-     * @return the max fuel capacity of the ship
-     */
-    public int getMaxFuelCapacity() {
-        return maxFuelCapacity;
-    }
-
-    /**
      * Getter method for ship fuel cell level
      *
      * @return amount of fuel cell level for ship
      */
     public int getFuelCellLevel() {
         return fuelCellLevel;
-    }
-
-    /**
-     * Getter method for distance per cell
-     *
-     * @return the distance per cell
-     */
-    public int getDistancePerCell() {
-        return distancePerCell;
     }
 
     /**
@@ -167,7 +134,7 @@ public class Ship {
      * @param item the item the player wants to sell from their ship
      * @return the price of the item the player wants to sell
      */
-    public int sell(String item) {
+    int sell(String item) {
         try {
             if(!inventory.containsKey(item) || inventory.get(item) == 0) throw new IllegalArgumentException();
             inventory.put(item, inventory.get(item) - 1);
@@ -185,7 +152,7 @@ public class Ship {
      * @param item the item the player wants to buy
      * @return the price of the item
      */
-    public int buy(String item) {
+    int buy(String item) {
         if(cargoUsed == cargoSpace) throw new IllegalArgumentException("No more space");
         if(inventory.containsKey(item)) {
             inventory.put(item, inventory.get(item) + 1);
@@ -266,7 +233,7 @@ public class Ship {
      * @return the standard refuel cost value
      */
     int getRefuelCost() {
-        return 100;
+        return refuelCost;
     }
 
     /**
@@ -284,23 +251,23 @@ public class Ship {
         editor.putString("currentSS", currentSS.getName());
 
         editor.apply();
-        saveHashMap("inventory", inventory, prefs);
+        saveHashMap(inventory, prefs);
 
     }
 
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
-    private void saveHashMap(String key, Object obj, SharedPreferences prefs) {
+    private void saveHashMap(Object obj, SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(obj);
-        editor.putString(key,json);
+        editor.putString("inventory",json);
         editor.apply();
     }
 
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
-    private HashMap<String, Integer> restoreHashMap(String key, SharedPreferences prefs) {
+    private HashMap<String, Integer> restoreHashMap(SharedPreferences prefs) {
         Gson gson = new Gson();
-        String json = prefs.getString(key,"");
+        String json = prefs.getString("inventory","");
         java.lang.reflect.Type type = new TypeToken<HashMap<String, Integer>>(){}.getType();
         return gson.fromJson(json, type);
     }

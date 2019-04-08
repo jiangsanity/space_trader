@@ -38,18 +38,7 @@ public class Marketplace {
 		return pricelog.getPrice(item);
 	}
 
-    /**
-     * Method that allows player to buy item from the marketplace
-     *
-     * @param item the item the player wants to buy from the marketplace
-     * @return the price of the item
-     */
-
-	public int buyItem(String item) {
-		return pricelog.getPrice(item);
-	}
-
-    /**
+	/**
      * Method that increases the prices of an item during a random price surge
      *
      * @param percent the percentage by which the price of item is increased

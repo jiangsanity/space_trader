@@ -21,5 +21,4 @@ public abstract class RandomEvent {
         return this.message;
     }
 
-    abstract void doEvent();
 }

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 import java.util.List;
 
-import edu.gatech.cs2340.game.entity.Planet;
 import edu.gatech.cs2340.game.entity.PlanetNames;
 import edu.gatech.cs2340.game.entity.Player;
 import edu.gatech.cs2340.game.entity.Ship;
@@ -43,22 +42,6 @@ class Repository {
         return player;
     }
 
-    public void addSolarSystem(SolarSystem s) {
-        Universe.addSolarSystem(s);
-    }
-
-    public void addPlanetToSS(Planet p, SolarSystem s) {
-        Universe.addPlanet(p, s);
-    }
-
-    public void removeSolarSystem(String systemName) {
-        Universe.removeSolarSystem(systemName);
-    }
-
-    public void removePlanetFromSS(String planetName, String ssName) {
-        Universe.removePlanet(planetName, ssName);
-    }
-
     void updatePlayer(Player p) {
         player.setDifficulty(p.getDifficulty());
         player.setEngineerPoints(p.getEngineerPoints());
@@ -94,16 +77,9 @@ class Repository {
         player.fly(s);
     }
 
-    int getFlyCost(SolarSystem s) {
-        return player.getFlyCost(s);
-    }
-
     void refuel() {
         player.refuel();
     }
 
-    int getFuelCellLevel() {
-        return player.getFuelCellLevel();
-    }
 }
 

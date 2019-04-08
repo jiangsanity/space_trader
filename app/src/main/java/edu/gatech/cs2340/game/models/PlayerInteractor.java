@@ -35,15 +35,4 @@ public class PlayerInteractor extends Interactor {
         getRepository().fly(s);
     }
 
-    public void refuel() {
-        getRepository().refuel();
-    }
-
-    public int getFuelCellLevel() {
-        return getRepository().getFuelCellLevel();
-    }
-
-    public int getFlyCost(SolarSystem s) {
-        return getRepository().getFlyCost(s);
-    }
 }

@@ -29,8 +29,8 @@ public class Player {
      * @param ship the type of ship the player owns
      * @param balance the amount of money the player has in their account
      */
-    public Player(String name, int difficulty, int pilotPoints, int fighterPoints, int traderPoints,
-                  int engineerPoints, int balance, Ship ship) {
+    private Player(String name, int difficulty, int pilotPoints, int fighterPoints, int traderPoints,
+                   int engineerPoints, int balance, Ship ship) {
         this.name = name;
         this.difficulty = difficulty;
         this.pilotPoints = pilotPoints;
@@ -144,16 +144,6 @@ public class Player {
 
     public int getEngineerPoints() {
         return engineerPoints;
-    }
-
-    /**
-     * Getter method for all points combined
-     *
-     * @return an array of the points for each skill
-     */
-
-    public int[] getAllPoints() {
-        return  new int[]{ pilotPoints, fighterPoints, traderPoints, engineerPoints};
     }
 
     /**

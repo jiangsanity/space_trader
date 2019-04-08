@@ -57,7 +57,6 @@ public class SSItemRecyclerViewAdapter extends RecyclerView.Adapter<SSItemRecycl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        final View mView;
         private SolarSystem system;
         private final Button goButton;
 
@@ -68,7 +67,6 @@ public class SSItemRecyclerViewAdapter extends RecyclerView.Adapter<SSItemRecycl
 
         ViewHolder(View view) {
             super(view);
-            mView = view;
             nameView = view.findViewById(R.id.ss_name);
             costView = view.findViewById(R.id.ss_fuelcost);
             techLevelView = view.findViewById(R.id.ss_techlevel);
