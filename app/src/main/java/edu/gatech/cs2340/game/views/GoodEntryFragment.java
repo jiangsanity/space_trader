@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.gatech.cs2340.game.R;
-import edu.gatech.cs2340.game.entity.GoodEntry;
 import edu.gatech.cs2340.game.entity.Marketplace;
 import edu.gatech.cs2340.game.models.Model;
 
@@ -106,6 +105,6 @@ public class GoodEntryFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(GoodEntry item);
+        void onListFragmentInteraction();
     }
 }

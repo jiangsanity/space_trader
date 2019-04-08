@@ -9,6 +9,7 @@ import edu.gatech.cs2340.game.entity.Point2D;
 import edu.gatech.cs2340.game.entity.Ship;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class EqualsPoint2DTest {
     @Test
@@ -18,10 +19,10 @@ public class EqualsPoint2DTest {
         Point2D yz = new Point2D(9,8);
         Ship not_point2D = new Ship("Gnat", 20, 20);
 
-        assertEquals(true, xy.equals(xz));
-        assertEquals(false, xy.equals(null));
-        assertEquals(false, xy.equals(not_point2D));
-        assertEquals(false, xy.equals(yz));
-        assertEquals(true, xy.equals(xy));
+        assertEquals(xy, xz);
+        assertNotEquals(null, xy);
+        assertNotEquals(xy, not_point2D);
+        assertNotEquals(xy, yz);
+        assertEquals(xy, xy);
     }
 }

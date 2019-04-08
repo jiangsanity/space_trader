@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.List;
 import java.util.Random;
 
 //treat as singleton
@@ -28,29 +27,10 @@ public class Universe {
         return instance;
     }
 
-    public static boolean addSolarSystem(SolarSystem newSystem) {
-        if(systems.containsKey(newSystem.getName())){
-            return false;
-        } else {
+    private static void addSolarSystem(SolarSystem newSystem) {
+        if(!systems.containsKey(newSystem.getName())){
             systems.put(newSystem.getName(), newSystem);
-            return true;
         }
-    }
-
-    public static void addSolarSystem(List<SolarSystem> newSystemList) {
-        for(SolarSystem system : newSystemList) {
-            addSolarSystem(system);
-        }
-    }
-
-    public static void removeSolarSystem(String ssName) {
-        systems.remove(ssName);
-    }
-
-    public static void removePlanet(String ssName, String pName) {
-        SolarSystem tempS = systems.get(ssName);
-        tempS.removePlanet(pName);
-        systems.put(ssName, tempS);
     }
 
     public static void generateNewSS(String name, int numPlanets) {
@@ -70,17 +50,11 @@ public class Universe {
         addSolarSystem(newSS);
     }
 
-    public static void addPlanet(Planet p, SolarSystem s) {
-        SolarSystem tempS = systems.get(s.getName());
-        tempS.addPlanet(p);
-        systems.put(s.getName(), tempS);
-    }
-
     public static Collection<SolarSystem> getSystems() {
         return systems.values();
     }
 
-    public static Map<String, SolarSystem> getSystemsMap() {
+    static Map<String, SolarSystem> getSystemsMap() {
         return systems;
     }
 
@@ -94,26 +68,26 @@ public class Universe {
     }
 
     public void saveUniverse(SharedPreferences prefs) {
-        saveHashMap("systems", systems, prefs);
+        saveHashMap(systems, prefs);
     }
 
     public void restoreUniverse(SharedPreferences prefs) {
-        systems = restoreHashMap("systems", prefs);
+        systems = restoreHashMap(prefs);
     }
 
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
-    private void saveHashMap(String key, Object obj, SharedPreferences prefs) {
+    private void saveHashMap(Object obj, SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(obj);
-        editor.putString(key,json);
+        editor.putString("systems",json);
         editor.apply();
     }
 
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
-    private static HashMap<String, SolarSystem> restoreHashMap(String key, SharedPreferences prefs) {
+    private static HashMap<String, SolarSystem> restoreHashMap(SharedPreferences prefs) {
         Gson gson = new Gson();
-        String json = prefs.getString(key,"");
+        String json = prefs.getString("systems","");
         java.lang.reflect.Type type = new TypeToken<HashMap<String, SolarSystem>>(){}.getType();
         return gson.fromJson(json, type);
     }

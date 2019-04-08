@@ -26,7 +26,4 @@ public class TravelViewModel extends AndroidViewModel {
         interactor.fly(s);
     }
 
-    public void refuel() {
-        interactor.refuel();
-    }
 }
