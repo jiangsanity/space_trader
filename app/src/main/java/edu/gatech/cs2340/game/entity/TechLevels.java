@@ -12,10 +12,10 @@ public enum TechLevels {
     POST_INDUSTRIAL(6),
     HI_TECH(7);
 
-    private int descriptionID;
-    private static Random rand = new Random();
+    private final int descriptionID;
+    private static final Random rand = new Random();
 
-    private TechLevels(int id){
+    TechLevels(int id){
         this.descriptionID = id;
     }
 
@@ -23,7 +23,7 @@ public enum TechLevels {
         return descriptionID;
     }
 
-    public static final TechLevels randomTechLevel(){
+    public static TechLevels randomTechLevel(){
         TechLevels[] allLevels = TechLevels.values();
         return allLevels[rand.nextInt(allLevels.length)];
     }

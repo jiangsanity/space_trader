@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.game.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.gatech.cs2340.game.R;
-import edu.gatech.cs2340.game.entity.Marketplace;
-import edu.gatech.cs2340.game.models.Model;
+import edu.gatech.cs2340.game.entity.SolarSystem;
+import edu.gatech.cs2340.game.viewmodels.TravelViewModel;
+
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -20,7 +23,7 @@ import edu.gatech.cs2340.game.models.Model;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class GoodEntryFragment extends Fragment {
+public class SSItemFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -32,12 +35,13 @@ public class GoodEntryFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public GoodEntryFragment() {
+    public SSItemFragment() {
     }
 
+    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static GoodEntryFragment newInstance(int columnCount) {
-        GoodEntryFragment fragment = new GoodEntryFragment();
+    public static SSItemFragment newInstance(int columnCount) {
+        SSItemFragment fragment = new SSItemFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -56,7 +60,7 @@ public class GoodEntryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_goodentry_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_ssitem_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -68,10 +72,11 @@ public class GoodEntryFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
-            //add dataset here
-            Marketplace market = Model.getInstance().getPlayerInteractor().getPlayer().getShip().getCurrentSS().getMarketplace();
+            TravelViewModel travelViewModel;
+            travelViewModel = ViewModelProviders.of(this).get(TravelViewModel.class);
 
-            recyclerView.setAdapter(new GoodEntryRecyclerViewAdapter(market.goodsList, mListener));
+            List<SolarSystem> availableFlyPoints = travelViewModel.getAvailableFlyPoints();
+            recyclerView.setAdapter(new SSItemRecyclerViewAdapter(availableFlyPoints, mListener));
         }
         return view;
     }
@@ -105,6 +110,7 @@ public class GoodEntryFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction();
+        // TODO: Update argument type and name
+        void onListFragmentInteraction(SolarSystem system);
     }
 }

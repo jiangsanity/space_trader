@@ -1,17 +1,9 @@
 package edu.gatech.cs2340.game.entity;
 
-public class Planet {
-    private String name;
+class Planet {
+    private final String name;
 
     public Planet(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 

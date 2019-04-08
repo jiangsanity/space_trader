@@ -1,18 +1,15 @@
 package edu.gatech.cs2340.game.models;
 
-import edu.gatech.cs2340.game.entity.Player;
-import edu.gatech.cs2340.game.entity.Universe;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class Model {
 
-    private Repository myRepository;
+    private final Repository myRepository;
 
-    private Map<String, Object> interactorMap;
+    private final Map<String, Object> interactorMap;
 
-    private static Model instance = new Model();
+    private static final Model instance = new Model();
 
     private Model() {
         myRepository = new Repository();

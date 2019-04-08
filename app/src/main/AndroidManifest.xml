@@ -10,7 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity android:name=".views.TravelActivity"
+            android:label="Space Trader"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".views.MarketplaceActivity"
             android:label="Space Trader"
@@ -18,7 +22,7 @@
         <activity android:name=".views.GameActivity" />
         <activity
             android:name=".views.MainActivity"
-            android:label="Space Trader M7"
+            android:label="Space Trader M10"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

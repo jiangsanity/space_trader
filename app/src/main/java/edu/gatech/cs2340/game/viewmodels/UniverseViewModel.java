@@ -2,6 +2,7 @@ package edu.gatech.cs2340.game.viewmodels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import edu.gatech.cs2340.game.entity.SolarSystem;
@@ -11,7 +12,7 @@ import edu.gatech.cs2340.game.models.UniverseInteractor;
 
 public class UniverseViewModel extends AndroidViewModel {
 
-    private UniverseInteractor interactor;
+    private final UniverseInteractor interactor;
 
     public UniverseViewModel(@NonNull Application application) {
         super(application);
@@ -19,6 +20,10 @@ public class UniverseViewModel extends AndroidViewModel {
     }
 
     public void initializeUniverse() { interactor.initializeUniverse(); }
+
+    public void initializeUniverse(SharedPreferences prefs) {
+        interactor.initializeUniverse(prefs);
+    }
 
     public Universe getUniverse() { return interactor.getUniverse(); }
 
