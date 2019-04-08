@@ -9,7 +9,7 @@ public class SolarSystem {
     private Point2D pos;
     private TechLevels techLevel;
     private Resources resources;
-	private Marketplace marketplace;
+	private final Marketplace marketplace;
 
     public SolarSystem(String name, TechLevels techLevel, Resources resources, int x, int y) {
         this.name = name;

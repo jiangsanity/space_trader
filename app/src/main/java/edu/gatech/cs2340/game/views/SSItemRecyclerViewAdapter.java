@@ -57,7 +57,7 @@ public class SSItemRecyclerViewAdapter extends RecyclerView.Adapter<SSItemRecycl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
+        final View mView;
         private SolarSystem system;
         private final Button goButton;
 
@@ -66,14 +66,14 @@ public class SSItemRecyclerViewAdapter extends RecyclerView.Adapter<SSItemRecycl
         private final TextView techLevelView;
         private final TextView resourcesView;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
-            nameView = (TextView) view.findViewById(R.id.ss_name);
-            costView =(TextView) view.findViewById(R.id.ss_fuelcost);
-            techLevelView = (TextView) view.findViewById(R.id.ss_techlevel);
-            resourcesView = (TextView) view.findViewById(R.id.ss_resources);
-            goButton = (Button) view.findViewById(R.id.goButton);
+            nameView = view.findViewById(R.id.ss_name);
+            costView = view.findViewById(R.id.ss_fuelcost);
+            techLevelView = view.findViewById(R.id.ss_techlevel);
+            resourcesView = view.findViewById(R.id.ss_resources);
+            goButton = view.findViewById(R.id.goButton);
         }
     }
 }

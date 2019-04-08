@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,14 +18,9 @@ import edu.gatech.cs2340.game.entity.SolarSystem;
 import edu.gatech.cs2340.game.entity.Universe;
 import edu.gatech.cs2340.game.models.Model;
 import edu.gatech.cs2340.game.viewmodels.AddNewPlayerViewModel;
-import edu.gatech.cs2340.game.viewmodels.BuySellViewModel;
 import edu.gatech.cs2340.game.viewmodels.UniverseViewModel;
 
 public class GameActivity extends AppCompatActivity {
-
-    private UniverseViewModel universeViewModel;
-    private AddNewPlayerViewModel addNewPlayerViewModel;
-    private BuySellViewModel buySellViewModel;
 
     private TextView balanceText;
     private TextView fuelText;
@@ -36,10 +30,9 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        addNewPlayerViewModel = ViewModelProviders.of(this).get(AddNewPlayerViewModel.class);
-        buySellViewModel = ViewModelProviders.of(this).get(BuySellViewModel.class);
+        AddNewPlayerViewModel addNewPlayerViewModel = ViewModelProviders.of(this).get(AddNewPlayerViewModel.class);
 
-        universeViewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
+        UniverseViewModel universeViewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         Universe u = universeViewModel.getUniverse();
         Ship newShip = Model.getInstance().getPlayerInteractor().getPlayer().getShip();
         SolarSystem currentSS = newShip.getCurrentSS();

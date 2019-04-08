@@ -3,7 +3,7 @@ package edu.gatech.cs2340.game.entity;
 import java.util.Random;
 
 public class PriceSurgeRandomEvent extends RandomEvent{
-    private Player player;
+    private final Player player;
 
     public PriceSurgeRandomEvent(Player p) {
         super(40, "A shortage on supplies has caused this planet to drastically increase it's prices!");

@@ -3,31 +3,27 @@ package edu.gatech.cs2340.game.models;
 
 import android.content.SharedPreferences;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.cs2340.game.entity.Planet;
 import edu.gatech.cs2340.game.entity.PlanetNames;
 import edu.gatech.cs2340.game.entity.Player;
-import edu.gatech.cs2340.game.entity.Point2D;
-import edu.gatech.cs2340.game.entity.Resources;
 import edu.gatech.cs2340.game.entity.Ship;
 import edu.gatech.cs2340.game.entity.SolarSystem;
-import edu.gatech.cs2340.game.entity.TechLevels;
 import edu.gatech.cs2340.game.entity.Universe;
 
-public class Repository {
-    private Universe universe;
-    private Player player;
+class Repository {
+    private final Universe universe;
+    private final Player player;
 
 
-    public Repository() {
+    Repository() {
         universe = Universe.getInstance();
         player = new Player();
         //initializeUniverse();
     }
 
-    public void initializeUniverse() {
+    void initializeUniverse() {
         int randSSNum = 10;
         int maxNumPlanets = 5;
         for(int i = 0; i < randSSNum; i++) {
@@ -35,11 +31,11 @@ public class Repository {
         }
     }
 
-    public void initializeUniverse(SharedPreferences prefs) {
+    void initializeUniverse(SharedPreferences prefs) {
         universe.restoreUniverse(prefs);
     }
 
-    public Universe getUniverse() {
+    Universe getUniverse() {
         return universe;
     }
 
@@ -63,7 +59,7 @@ public class Repository {
         Universe.removePlanet(planetName, ssName);
     }
 
-    public void updatePlayer(Player p) {
+    void updatePlayer(Player p) {
         player.setDifficulty(p.getDifficulty());
         player.setEngineerPoints(p.getEngineerPoints());
         player.setFighterPoints(p.getFighterPoints());
@@ -74,39 +70,39 @@ public class Repository {
         player.setShip(p.getShip());
     }
 
-    public void addNewShip(Ship s) {
+    void addNewShip(Ship s) {
         player.setShip(s);
     }
 
-    public SolarSystem getRandomSS() {
+    SolarSystem getRandomSS() {
         return Universe.getSystems().iterator().next();
     }
 
-    public void playerBuy(String item, int n) {
+    void playerBuy(String item, int n) {
         player.buy(item, n);
     }
 
-    public void playerSell(String item, int n) {
+    void playerSell(String item, int n) {
         player.sell(item, n);
     }
 
-    public List<SolarSystem> getAvailableFlyPoints() {
+    List<SolarSystem> getAvailableFlyPoints() {
         return player.getAvailableFlyPoints();
     }
 
-    public void fly(SolarSystem s) {
+    void fly(SolarSystem s) {
         player.fly(s);
     }
 
-    public int getFlyCost(SolarSystem s) {
+    int getFlyCost(SolarSystem s) {
         return player.getFlyCost(s);
     }
 
-    public void refuel() {
+    void refuel() {
         player.refuel();
     }
 
-    public int getFuelCellLevel() {
+    int getFuelCellLevel() {
         return player.getFuelCellLevel();
     }
 }

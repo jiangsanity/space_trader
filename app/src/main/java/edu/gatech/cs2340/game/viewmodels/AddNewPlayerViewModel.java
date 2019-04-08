@@ -10,7 +10,7 @@ import edu.gatech.cs2340.game.models.Model;
 import edu.gatech.cs2340.game.models.PlayerInteractor;
 
 public class AddNewPlayerViewModel extends AndroidViewModel {
-    private PlayerInteractor interactor;
+    private final PlayerInteractor interactor;
 
     public AddNewPlayerViewModel(@NonNull Application application) {
         super(application);

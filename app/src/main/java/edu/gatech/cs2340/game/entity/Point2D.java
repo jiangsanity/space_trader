@@ -1,10 +1,5 @@
 package edu.gatech.cs2340.game.entity;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
-import java.util.Objects;
-
 public class Point2D {
     private int x;
     private int y;
@@ -31,7 +26,7 @@ public class Point2D {
     }
 
     public static double distance(Point2D p1, Point2D p2) {
-        return Math.hypot(p1.getX() - p2.getX(), p2.getY() - p2.getY());
+        return Math.hypot(p1.getX() - p2.getX(), p1.getY() - p2.getY());
     }
 
     @Override

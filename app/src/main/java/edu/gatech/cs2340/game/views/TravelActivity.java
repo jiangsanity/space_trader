@@ -5,14 +5,9 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
-
-import java.util.List;
 
 import edu.gatech.cs2340.game.R;
 import edu.gatech.cs2340.game.entity.LeakFuelRandomEvent;
@@ -20,7 +15,6 @@ import edu.gatech.cs2340.game.entity.Player;
 import edu.gatech.cs2340.game.entity.PriceSurgeRandomEvent;
 import edu.gatech.cs2340.game.entity.SolarSystem;
 import edu.gatech.cs2340.game.models.Model;
-import edu.gatech.cs2340.game.viewmodels.AddNewPlayerViewModel;
 import edu.gatech.cs2340.game.viewmodels.TravelViewModel;
 
 public class TravelActivity extends AppCompatActivity implements SSItemFragment.OnListFragmentInteractionListener{

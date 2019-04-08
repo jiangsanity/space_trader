@@ -1,7 +1,5 @@
 package edu.gatech.cs2340.game.entity;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ import edu.gatech.cs2340.game.models.Model;
  */
 public class Marketplace {
 
-	private PriceLog pricelog;
+	private final PriceLog pricelog;
     public final List<GoodEntry> goodsList = new ArrayList<>();
 
 	/**

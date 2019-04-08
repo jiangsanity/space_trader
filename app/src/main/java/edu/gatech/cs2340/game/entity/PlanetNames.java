@@ -126,20 +126,20 @@ public enum PlanetNames {
     ZALKON("Zalkon"),
     ZUUL("Zuul");			// From the first Ghostbusters movie
 
-    private String name;
-    private static PlanetNames[] allNames = PlanetNames.values();
-    private static Random rand = new Random();
+    private final String name;
+    private static final PlanetNames[] allNames = PlanetNames.values();
+    private static final Random rand = new Random();
     private static HashSet<String> used = new HashSet<>();
 
-    private PlanetNames(String name) {
+    PlanetNames(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 
-    public static final String randomPlanetName(){
+    public static String randomPlanetName(){
         if(used.size() == allNames.length) {
             refreshUsed();
         }
@@ -151,8 +151,8 @@ public enum PlanetNames {
         return tmp.getName();
     }
 
-    public static void refreshUsed(){
+    private static void refreshUsed(){
         used = new HashSet<>();
-        System.out.printf("WARNING: RESETTING USED NAMES!");
+        System.out.println("WARNING: RESETTING USED NAMES!");
     }
 }

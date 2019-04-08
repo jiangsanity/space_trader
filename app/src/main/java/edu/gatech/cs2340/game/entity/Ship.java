@@ -1,8 +1,6 @@
 package edu.gatech.cs2340.game.entity;
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,12 +16,12 @@ import java.util.List;
 
 public class Ship {
     private String name;
-    private int maxFuelCapacity;
+    private final int maxFuelCapacity;
     private int fuelCellLevel;
-    private int distancePerCell;
-    private int cargoSpace;
+    private final int distancePerCell;
+    private final int cargoSpace;
     private int cargoUsed;
-    private HashMap<String, Integer> inventory;
+    private final HashMap<String, Integer> inventory;
 
     private SolarSystem currentSS;
     private List<SolarSystem> availableFlyPoints;
@@ -216,7 +214,7 @@ public class Ship {
      * Method that generates fly points when current available fly points are too low
      *
      */
-    public void generateFlyPoints() {
+    private void generateFlyPoints() {
         availableFlyPoints = new ArrayList<>();
         Point2D curLoc = currentSS.getPos();
         int maxTravel = fuelCellLevel * distancePerCell;
@@ -232,7 +230,7 @@ public class Ship {
      *
      * @param s solar system to travel to
      */
-    public void fly(SolarSystem s) {
+    void fly(SolarSystem s) {
         fuelCellLevel -= getFlyCost(s);
         currentSS = s;
         generateFlyPoints();
@@ -244,7 +242,7 @@ public class Ship {
      * @param s solar system to fly to
      * @return the cost (fly points) it takes to fly to the other solar system
      */
-    public int getFlyCost(SolarSystem s) {
+    int getFlyCost(SolarSystem s) {
         return (int)(Point2D.distance(s.getPos(), currentSS.getPos()) / distancePerCell);
     }
 
@@ -253,7 +251,7 @@ public class Ship {
      *
      * @return whether or not the ship needs to be refueled
      */
-    public boolean refuel() {
+    boolean refuel() {
         if (fuelCellLevel == maxFuelCapacity) {
             return false;
         }
@@ -267,7 +265,7 @@ public class Ship {
      *
      * @return the standard refuel cost value
      */
-    public int getRefuelCost() {
+    int getRefuelCost() {
         return 100;
     }
 
@@ -276,7 +274,7 @@ public class Ship {
      *
      * @param prefs the ship values to be saved for the next time the app is opened
      */
-    public void saveShip(SharedPreferences prefs) {
+    void saveShip(SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("sName", name);
         editor.putInt("maxFuel", maxFuelCapacity);
@@ -291,7 +289,7 @@ public class Ship {
     }
 
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
-    public void saveHashMap(String key , Object obj, SharedPreferences prefs) {
+    private void saveHashMap(String key, Object obj, SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(obj);
@@ -300,11 +298,10 @@ public class Ship {
     }
 
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
-    public HashMap<String, Integer> restoreHashMap(String key, SharedPreferences prefs) {
+    private HashMap<String, Integer> restoreHashMap(String key, SharedPreferences prefs) {
         Gson gson = new Gson();
         String json = prefs.getString(key,"");
         java.lang.reflect.Type type = new TypeToken<HashMap<String, Integer>>(){}.getType();
-        HashMap<String, Integer> obj = gson.fromJson(json, type);
-        return obj;
+        return gson.fromJson(json, type);
     }
 }

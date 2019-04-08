@@ -1,16 +1,15 @@
 package edu.gatech.cs2340.game.entity;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class PriceLog {
 
-    private List<String> items;
-    private int[] ipl;
-    private int[] prices;
-    private int[] varRate;
+    private final List<String> items;
+    private final int[] ipl;
+    private final int[] prices;
+    private final int[] varRate;
 
     public PriceLog(TechLevels s) {
         items = Arrays.asList("water", "furs", "food", "ore", "games", "firearms"

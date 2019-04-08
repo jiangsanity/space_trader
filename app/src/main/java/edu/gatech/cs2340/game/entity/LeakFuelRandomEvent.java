@@ -1,7 +1,7 @@
 package edu.gatech.cs2340.game.entity;
 
 public class LeakFuelRandomEvent extends RandomEvent {
-    private Player player;
+    private final Player player;
 
     public LeakFuelRandomEvent(Player p) {
         super(50, "Your ship leaked fuel during travel, you lost 10% of remaining fuel!");

@@ -9,9 +9,9 @@ public class UniverseInteractor extends Interactor {
 
     public UniverseInteractor(Repository repo) {super(repo);}
 
-    public Universe getUniverse() { return getRepository().getUniverse(); };
+    public Universe getUniverse() { return getRepository().getUniverse(); }
 
-    public void initializeUniverse() { getRepository().initializeUniverse(); };
+    public void initializeUniverse() { getRepository().initializeUniverse(); }
 
     public void initializeUniverse(SharedPreferences prefs) {
         getRepository().initializeUniverse(prefs);

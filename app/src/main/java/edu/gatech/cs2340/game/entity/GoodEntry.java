@@ -1,17 +1,15 @@
 package edu.gatech.cs2340.game.entity;
 
-import android.util.Log;
-
 import edu.gatech.cs2340.game.models.Model;
 
 /**
  * A representation of a good in the marketplace
  */
 public class GoodEntry {
-private String itemName;
+private final String itemName;
 private int itemPrice;
 private int shipInventory;
-private int marketInventory;
+private final int marketInventory;
 private static int shipCargoUsed;
 
 

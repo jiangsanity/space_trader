@@ -17,11 +17,11 @@ public enum Resources {
     ARISTIC(11),
     WARLIKE(12);
 
-    private int descriptionID;
-    private static Random rand = new Random();
+    private final int descriptionID;
+    private static final Random rand = new Random();
 
 
-    private Resources(int id){
+    Resources(int id){
         this.descriptionID = id;
     }
 
@@ -29,7 +29,7 @@ public enum Resources {
         return descriptionID;
     }
 
-    public static final Resources randomResource(){
+    public static Resources randomResource(){
         Resources[] allResources = Resources.values();
         return allResources[rand.nextInt(allResources.length - 1)];
     }

@@ -1,6 +1,5 @@
 package edu.gatech.cs2340.game.views;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import edu.gatech.cs2340.game.R;
 import edu.gatech.cs2340.game.entity.GoodEntry;
 import edu.gatech.cs2340.game.entity.Marketplace;
-import edu.gatech.cs2340.game.entity.TechLevels;
 import edu.gatech.cs2340.game.models.Model;
 
 /**

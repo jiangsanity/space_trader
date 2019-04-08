@@ -16,11 +16,11 @@ import java.util.Random;
 public class Universe {
     private static Map<String, SolarSystem> systems;
 
-    private static Universe instance = new Universe();
+    private static final Universe instance = new Universe();
     private static HashSet<Point2D> solarSystemPoints;
 
     private Universe() {
-        this.systems = new HashMap<>();
+        systems = new HashMap<>();
         solarSystemPoints = new HashSet<>();
     }
 
@@ -86,11 +86,11 @@ public class Universe {
 
     @Override
     public String toString() {
-        String ret = "Universe contains Solar Systems:\n";
+        StringBuilder ret = new StringBuilder("Universe contains Solar Systems:\n");
         for(SolarSystem s : systems.values()) {
-            ret += s.toString() + "\n";
+            ret.append(s.toString()).append("\n");
         }
-        return ret;
+        return ret.toString();
     }
 
     public void saveUniverse(SharedPreferences prefs) {
@@ -102,7 +102,7 @@ public class Universe {
     }
 
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
-    public void saveHashMap(String key , Object obj, SharedPreferences prefs) {
+    private void saveHashMap(String key, Object obj, SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(obj);
@@ -111,11 +111,10 @@ public class Universe {
     }
 
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
-    public static HashMap<String, SolarSystem> restoreHashMap(String key, SharedPreferences prefs) {
+    private static HashMap<String, SolarSystem> restoreHashMap(String key, SharedPreferences prefs) {
         Gson gson = new Gson();
         String json = prefs.getString(key,"");
         java.lang.reflect.Type type = new TypeToken<HashMap<String, SolarSystem>>(){}.getType();
-        HashMap<String, SolarSystem> obj = gson.fromJson(json, type);
-        return obj;
+        return gson.fromJson(json, type);
     }
 }

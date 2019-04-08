@@ -1,5 +1,5 @@
-/**
- * Author: Fernanda Moreno
+/*
+  Author: Fernanda Moreno
  */
 package edu.gatech.cs2340.game;
 

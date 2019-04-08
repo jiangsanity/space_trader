@@ -3,14 +3,13 @@ package edu.gatech.cs2340.game.models;
 import java.util.List;
 
 import edu.gatech.cs2340.game.entity.Player;
-import edu.gatech.cs2340.game.entity.Point2D;
 import edu.gatech.cs2340.game.entity.Ship;
 import edu.gatech.cs2340.game.entity.SolarSystem;
 
 public class PlayerInteractor extends Interactor {
     public PlayerInteractor(Repository repo) {super(repo);}
 
-    public Player getPlayer() { return getRepository().getPlayer(); };
+    public Player getPlayer() { return getRepository().getPlayer(); }
 
     public void updatePlayer(Player p) {
         getRepository().updatePlayer(p);

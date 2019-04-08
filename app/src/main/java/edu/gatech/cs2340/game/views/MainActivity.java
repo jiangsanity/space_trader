@@ -19,8 +19,6 @@ import android.widget.TextView;
 
 import edu.gatech.cs2340.game.R;
 import edu.gatech.cs2340.game.entity.Player;
-import edu.gatech.cs2340.game.entity.Universe;
-import edu.gatech.cs2340.game.models.Model;
 import edu.gatech.cs2340.game.viewmodels.AddNewPlayerViewModel;
 import edu.gatech.cs2340.game.viewmodels.UniverseViewModel;
 
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private int difficulty;
     private int pointsLeft;
 
-    Player player;
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

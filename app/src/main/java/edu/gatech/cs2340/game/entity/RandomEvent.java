@@ -3,10 +3,10 @@ package edu.gatech.cs2340.game.entity;
 import java.util.Random;
 
 public abstract class RandomEvent {
-    private int probability;
-    private String message;
+    private final int probability;
+    private final String message;
 
-    public RandomEvent(int probability, String message) {
+    RandomEvent(int probability, String message) {
         this.probability = probability;
         this.message = message;
     }
