@@ -1,6 +1,6 @@
 package edu.gatech.cs2340.game.entity;
 
-class Planet {
+public class Planet {
     private final String name;
 
     public Planet(String name) {

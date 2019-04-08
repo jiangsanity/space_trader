@@ -20,9 +20,19 @@ public class SolarSystem {
 		marketplace = new Marketplace(this.techLevel);
     }
 
-    void addPlanet(Planet p) {
+    public void addPlanet(Planet p) {
         if(!planets.contains(p)) {
             planets.add(p);
+        }
+    }
+
+    public List<Planet> getPlanets() {
+        return planets;
+    }
+
+    public void removePlanet(Planet p) {
+        if (planets.contains(p)) {
+            planets.remove(p);
         }
     }
 

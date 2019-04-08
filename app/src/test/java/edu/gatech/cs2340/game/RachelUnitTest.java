@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.cs2340.game.entity.Planet;
+import edu.gatech.cs2340.game.entity.Resources;
 import edu.gatech.cs2340.game.entity.SolarSystem;
+import edu.gatech.cs2340.game.entity.TechLevels;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,7 +28,7 @@ public class RachelUnitTest {
 
     @Before
     public void setUP() {
-        system = new SolarSystem("Bocc");
+        system = new SolarSystem("Bocc", TechLevels.HI_TECH, Resources.DESERT, 0, 0);
         p1 = new Planet("Earth");
         p2 = new Planet("Mars");
         p3 = new Planet("Gru");
@@ -39,13 +41,11 @@ public class RachelUnitTest {
         system.addPlanet(p4);
         system.addPlanet(p5);
     }
-    @Test
-    public void addition_isCorrect() { assertEquals(4, 2 + 2); }
-
+    
     @Test
     public void testRemovePlanet() {
-        system.removePlanet(p1.getName());
-        system.removePlanet(p3.getName());
+        system.removePlanet(p1);
+        system.removePlanet(p3);
         List<Planet> expected = new ArrayList<>();
         expected.add(p2);
         expected.add(p4);
