@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class removePlanetTest {
+public class RemovePlanetTest {
     private SolarSystem system;
     private Planet p1;
     private Planet p2;
