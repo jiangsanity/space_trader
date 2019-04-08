@@ -151,7 +151,7 @@ public enum PlanetNames {
         return tmp.getName();
     }
 
-    private static void refreshUsed(){
+    public static void refreshUsed(){
         used = new HashSet<>();
         System.out.println("WARNING: RESETTING USED NAMES!");
     }
