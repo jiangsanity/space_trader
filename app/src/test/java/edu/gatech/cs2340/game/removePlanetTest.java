@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class RachelUnitTest {
+public class removePlanetTest {
     private SolarSystem system;
     private Planet p1;
     private Planet p2;
@@ -41,7 +41,7 @@ public class RachelUnitTest {
         system.addPlanet(p4);
         system.addPlanet(p5);
     }
-    
+
     @Test
     public void testRemovePlanet() {
         system.removePlanet(p1);
