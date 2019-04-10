@@ -255,6 +255,11 @@ public class Ship {
 
     }
 
+    /**
+     * used for saving state of ship
+     * @param obj obj to save
+     * @param prefs shared prefs
+     */
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
     private void saveHashMap(Object obj, SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
@@ -264,6 +269,11 @@ public class Ship {
         editor.apply();
     }
 
+    /**
+     * used for restoring state of ship
+     * @param prefs shared prefs to use
+     * @return map
+     */
     //credit: https://freakycoder.com/android-notes-41-how-to-save-and-get-hashmap-into-sharedpreference-e686ead94b6c
     private HashMap<String, Integer> restoreHashMap(SharedPreferences prefs) {
         Gson gson = new Gson();

@@ -19,6 +19,10 @@ public enum Resources {
 
     private static final Random rand = new Random();
 
+    /**
+     * returns random enum value of resources
+     * @return random resource
+     */
     public static Resources randomResource(){
         Resources[] allResources = Resources.values();
         return allResources[rand.nextInt(allResources.length - 1)];

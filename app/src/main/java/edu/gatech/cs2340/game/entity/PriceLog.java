@@ -11,6 +11,10 @@ public class PriceLog {
     private final int[] prices;
     private final int[] varRate;
 
+    /**
+     * Constructor for pricelog for a marketplace
+     * @param s tech level to base pricelog off of
+     */
     public PriceLog(TechLevels s) {
         items = Arrays.asList("water", "furs", "food", "ore", "games", "firearms"
                 , "medicine", "machines", "narcotics", "robots");
@@ -21,14 +25,27 @@ public class PriceLog {
         increaseByVar();
     }
 
+    /**
+     * returns price of item in pricelog
+     * @param item to look up price for
+     * @return price of item
+     */
     public int getPrice(String item) {
         return prices[items.indexOf(item)];
     }
 
+    /**
+     * list available items for sale
+     * @return list of items for sale
+     */
     public List<String> getItems() {
         return items;
     }
 
+    /**
+     * increases prices by tech level
+     * @param tl tech level to base off of
+     */
     private void increaseByTL(TechLevels tl) {
         for(int i = 0; i < 10; i++) {
             int newprice = prices[i] + (tl.getDescriptionID() * ipl[i]);
@@ -36,6 +53,9 @@ public class PriceLog {
         }
     }
 
+    /**
+     * increases prices by random occurance to upper limit
+     */
     private void increaseByVar() {
         Random rand = new Random();
         for(int i = 0; i < 10; i++) {

@@ -131,14 +131,26 @@ public enum PlanetNames {
     private static final Random rand = new Random();
     private static HashSet<String> used = new HashSet<>();
 
+    /**
+     * constructor for planet name enum
+     * @param name name of planet
+     */
     PlanetNames(String name) {
         this.name = name;
     }
 
+    /**
+     * gets name of enum object
+     * @return name of enum object
+     */
     private String getName() {
         return name;
     }
 
+    /**
+     * generates a random planet name from list
+     * @return name of planet
+     */
     public static String randomPlanetName(){
         if(used.size() == allNames.length) {
             refreshUsed();
@@ -151,6 +163,9 @@ public enum PlanetNames {
         return tmp.getName();
     }
 
+    /**
+     * resets used names to be available to use again
+     */
     public static void refreshUsed(){
         used = new HashSet<>();
         System.out.println("WARNING: RESETTING USED NAMES!");
