@@ -20,6 +20,9 @@ public class MarketplaceActivity extends AppCompatActivity implements GoodEntryF
         updateBalance();
     }
 
+    /**
+     * updates the balance of the player according to action being taken
+     */
     private void updateBalance() {
         TextView balanceView = findViewById(R.id.balanceTitle);
         Player player = Model.getInstance().getPlayerInteractor().getPlayer();

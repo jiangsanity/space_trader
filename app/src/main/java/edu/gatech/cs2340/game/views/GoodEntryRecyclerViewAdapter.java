@@ -22,6 +22,11 @@ public class GoodEntryRecyclerViewAdapter extends RecyclerView.Adapter<GoodEntry
     private final List<GoodEntry> mValues;
     private final OnListFragmentInteractionListener mListener;
 
+    /**
+     * Constructor for view adapter
+     * @param items list of goods
+     * @param listener listener object
+     */
     public GoodEntryRecyclerViewAdapter(List<GoodEntry> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
@@ -70,6 +75,11 @@ public class GoodEntryRecyclerViewAdapter extends RecyclerView.Adapter<GoodEntry
         });
     }
 
+    /**
+     * updates the ui according to changes in the marketplace
+     * @param holder view holder object
+     * @param good item to be changed
+     */
     private void updateUI(ViewHolder holder, GoodEntry good) {
         mListener.onListFragmentInteraction();
         holder.priceView.setText("Price: $" + good.getItemPrice());
@@ -92,6 +102,10 @@ public class GoodEntryRecyclerViewAdapter extends RecyclerView.Adapter<GoodEntry
         private final Button buyButton;
         private final Button sellButton;
 
+        /**
+         * constructor for view holder inner class
+         * @param view view being attached
+         */
         private ViewHolder(View view) {
             super(view);
             mView = view;

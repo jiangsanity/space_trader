@@ -51,9 +51,7 @@ public class SolarSystem {
      * @param p planet to remove
      */
     public void removePlanet(Planet p) {
-        if (planets.contains(p)) {
-            planets.remove(p);
-        }
+        planets.remove(p);
     }
 
     /**

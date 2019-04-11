@@ -1,7 +1,7 @@
 package edu.gatech.cs2340.game.entity;
-import java.util.HashSet;
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public enum PlanetEvents {
 
     DROUGHT("Drought"),
@@ -13,9 +13,9 @@ public enum PlanetEvents {
     LACKOFWORKERS("Lack of Workers");
 
 
-    private String event;
-    private static PlanetEvents[] allEvents = PlanetEvents.values();
-    private static Random rand = new Random();
+    private final String event;
+    private static final PlanetEvents[] allEvents = PlanetEvents.values();
+    private static final Random rand = new Random();
 
     /**
      * enum constructor for planet event
@@ -29,7 +29,7 @@ public enum PlanetEvents {
      * gets the event associated with enum
      * @return string of event name
      */
-    public String getEvent() {
+    private String getEvent() {
         return event;
     }
 
@@ -37,7 +37,7 @@ public enum PlanetEvents {
      * generate random planet event
      * @return random planet event
      */
-    public static final String randomPlanetEvent(){
+    public static String randomPlanetEvent(){
         PlanetEvents tmp = allEvents[rand.nextInt(allEvents.length)];
         return tmp.getEvent();
     }

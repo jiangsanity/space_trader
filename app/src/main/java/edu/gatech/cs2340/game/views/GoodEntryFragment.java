@@ -35,7 +35,11 @@ public class GoodEntryFragment extends Fragment {
     public GoodEntryFragment() {
     }
 
-    @SuppressWarnings("unused")
+    /**
+     * generates new instance of good entry fragment
+     * @param columnCount col number
+     * @return GEF instance
+     */
     public static GoodEntryFragment newInstance(int columnCount) {
         GoodEntryFragment fragment = new GoodEntryFragment();
         Bundle args = new Bundle();

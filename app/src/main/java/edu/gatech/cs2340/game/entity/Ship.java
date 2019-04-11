@@ -14,6 +14,7 @@ import java.util.List;
  *
  */
 
+@SuppressWarnings("ConstantConditions")
 public class Ship {
     private final String name;
     private final int maxFuelCapacity;
@@ -141,6 +142,8 @@ public class Ship {
             if(inventory.get(item) == 0) inventory.remove(item);
         } catch (IllegalArgumentException e) {
             System.out.println("Item does not exist in inventory");
+        } catch (NullPointerException e) {
+            System.out.println("Item is null");
         }
         cargoUsed--;
         return currentSS.getMarketplace().getPrice(item);

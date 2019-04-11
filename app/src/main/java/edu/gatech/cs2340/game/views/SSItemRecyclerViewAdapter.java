@@ -19,6 +19,11 @@ public class SSItemRecyclerViewAdapter extends RecyclerView.Adapter<SSItemRecycl
     private final List<SolarSystem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
+    /**
+     * constructor for view adapter
+     * @param items solar systems to travel to
+     * @param listener listener for action
+     */
     public SSItemRecyclerViewAdapter(List<SolarSystem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;

@@ -182,6 +182,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * helper for increment and decrement stock number button
+     * @param isIncrement if the button clicked is + or -
+     * @param attribute which view being changed
+     */
     private void incDecButtonPress (boolean isIncrement, TextView attribute) {
         String value = attribute.getText().toString();
         int finalValue = Integer.parseInt(value);
@@ -201,6 +206,11 @@ public class MainActivity extends AppCompatActivity {
         skillPointsView.setText("" + pointsLeft);
     }
 
+    /**
+     * helper for difficulty to be set
+     * @param isIncrement clicker for + or -
+     * @param attribute view being changed
+     */
     private void difficultySet(boolean isIncrement, TextView attribute) {
         if (isIncrement) {
             if (difficulty < 4) {

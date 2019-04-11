@@ -1,7 +1,6 @@
 package edu.gatech.cs2340.game;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -55,7 +54,7 @@ public class GenRandomNameTest {
         }
     }
 
-    public boolean isAlphaNumeric(String s){
+    private boolean isAlphaNumeric(String s){
         String pattern= "^[a-zA-Z]*$";
         return s.matches(pattern);
     }
